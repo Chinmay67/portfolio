@@ -1,25 +1,63 @@
 /**
- * Footer Styles
- * Minimal, responsive layout
+ * Footer Component Styles
+ * Minimal footer with links and copyright
+ * Enhanced with signature grid motif matching Hero
  * Uses design tokens from variables.css
  */
 
 .footer {
     padding-top: var(--spacing-3xl);
-    padding-bottom: var(--spacing-3xl);
+    padding-bottom: var(--spacing-2xl);
     border-top: 1px solid var(--border-subtle);
+    position: relative;
+}
+
+/* Signature grid motif - matches Hero */
+@media (min-width: 1024px) {
+    .footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            repeating-linear-gradient(0deg,
+                transparent,
+                transparent 48px,
+                rgba(255, 255, 255, 0.015) 48px,
+                rgba(255, 255, 255, 0.015) 50px),
+            repeating-linear-gradient(90deg,
+                transparent,
+                transparent 48px,
+                rgba(255, 255, 255, 0.015) 48px,
+                rgba(255, 255, 255, 0.015) 50px);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .footer>* {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+/* ============================================
+   FOOTER CONTENT
+   ============================================ */
+
+.content {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xl);
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
 }
 
 /* ============================================
    BRANDING
    ============================================ */
 
-.branding {
+.brand {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xs);
@@ -31,26 +69,24 @@
     color: var(--text-primary);
 }
 
-.title {
+.tagline {
     font-size: 0.9375rem;
-    font-weight: var(--weight-regular);
     color: var(--text-tertiary);
 }
 
 /* ============================================
-   QUICK LINKS
+   LINKS
    ============================================ */
 
 .links {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-lg);
-    justify-content: center;
+    align-items: center;
 }
 
 .link {
     font-size: 0.9375rem;
-    font-weight: var(--weight-medium);
     color: var(--text-secondary);
     text-decoration: none;
     transition: color var(--duration-quick) var(--ease-out);
@@ -62,7 +98,7 @@
 
 .link:focus-visible {
     outline: 2px solid var(--border-focus);
-    outline-offset: 3px;
+    outline-offset: 2px;
     border-radius: var(--radius-sm);
 }
 
@@ -73,7 +109,6 @@
 .copyright {
     font-size: 0.875rem;
     color: var(--text-tertiary);
-    line-height: var(--line-height-body);
 }
 
 /* ============================================
@@ -83,41 +118,21 @@
 /* Tablet and up */
 @media (min-width: 768px) {
     .footer {
+        padding-top: var(--spacing-4xl);
+        padding-bottom: var(--spacing-3xl);
+    }
+
+    .content {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        text-align: left;
-        padding-top: var(--spacing-4xl);
-        padding-bottom: var(--spacing-4xl);
     }
 
-    .branding {
-        align-items: flex-start;
+    .brand {
+        flex-shrink: 0;
     }
 
     .links {
         gap: var(--spacing-xl);
-    }
-
-    .copyright {
-        text-align: right;
-    }
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-    .footer {
-        padding-top: var(--spacing-5xl);
-        padding-bottom: var(--spacing-5xl);
-    }
-}
-
-/* ============================================
-   ACCESSIBILITY: Reduced Motion
-   ============================================ */
-
-@media (prefers-reduced-motion: reduce) {
-    .link:hover {
-        transition: none;
     }
 }

@@ -1,7 +1,7 @@
 /**
  * Experience Section Styles
  * Mobile-first, timeline-style layout
- * Clear hierarchy for work history
+ * Enhanced with gradient backgrounds and accent borders
  * Uses design tokens from variables.css
  */
 
@@ -47,19 +47,45 @@
 }
 
 /* ============================================
-   EXPERIENCE CARD
+   EXPERIENCE CARD - ENHANCED DEPTH
    ============================================ */
 
 .experienceCard {
-    background-color: var(--bg-secondary);
+    background: linear-gradient(135deg,
+            var(--bg-secondary) 0%,
+            rgba(24, 24, 27, 0.6) 100%);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
-    transition: border-color var(--duration-normal) var(--ease-out);
+    transition: all var(--duration-normal) var(--ease-out);
+    position: relative;
+}
+
+/* Subtle left accent border */
+.experienceCard::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: var(--spacing-xl);
+    bottom: var(--spacing-xl);
+    width: 3px;
+    background: linear-gradient(180deg,
+            var(--accent-primary) 0%,
+            transparent 100%);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-out);
 }
 
 .experienceCard:hover {
-    border-color: var(--accent-primary);
+    border-color: rgba(99, 102, 241, 0.3);
+    background: linear-gradient(135deg,
+            rgba(39, 39, 42, 1) 0%,
+            rgba(24, 24, 27, 0.8) 100%);
+}
+
+.experienceCard:hover::before {
+    opacity: 1;
 }
 
 /* ============================================

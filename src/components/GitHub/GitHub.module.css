@@ -1,6 +1,7 @@
 /**
  * GitHub Section Styles
  * Stats grid + repository cards
+ * Enhanced with gradient backgrounds and top accent lines
  * Uses design tokens from variables.css
  */
 
@@ -120,7 +121,7 @@
 }
 
 /* ============================================
-   REPOSITORY CARDS
+   REPOSITORY CARDS - ENHANCED DEPTH
    ============================================ */
 
 .repos {
@@ -132,17 +133,41 @@
 .repoCard {
     display: block;
     padding: var(--spacing-xl);
-    background-color: var(--bg-secondary);
+    background: linear-gradient(135deg,
+            var(--bg-secondary) 0%,
+            rgba(24, 24, 27, 0.7) 100%);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
     text-decoration: none;
     transition: all var(--duration-normal) var(--ease-out);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Top accent line */
+.repoCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--accent-primary) 50%,
+            transparent 100%);
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-out);
 }
 
 .repoCard:hover {
     border-color: var(--accent-primary);
-    transform: translateY(-6px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.repoCard:hover::before {
+    opacity: 1;
 }
 
 .repoCard:focus-visible {

@@ -1,36 +1,38 @@
 /**
  * Projects Section Styles
  * Mobile-first, card-based layout
- * Clear vertical hierarchy for scannable content
+ * Premium section with elevated visual treatment
  * Uses design tokens from variables.css
  */
 
 .projects {
-    padding-top: var(--spacing-4xl);
-    padding-bottom: var(--spacing-4xl);
+    padding-top: var(--spacing-5xl);
+    padding-bottom: var(--spacing-5xl);
 }
 
 /* ============================================
-   SECTION HEADING
+   SECTION HEADING - PREMIUM STYLING
    ============================================ */
 
 .heading {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: var(--weight-semibold);
+    font-size: clamp(2rem, 4.5vw, 2.75rem);
+    font-weight: var(--weight-bold);
     line-height: var(--line-height-heading);
     letter-spacing: var(--letter-spacing-tight);
     color: var(--text-primary);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
     position: relative;
 }
 
-/* Subtle underline accent */
+/* Gradient accent underline */
 .heading::after {
     content: '';
     display: block;
-    width: 60px;
-    height: 3px;
-    background-color: var(--accent-primary);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--accent-primary) 0%,
+            rgba(99, 102, 241, 0.3) 100%);
     margin-top: var(--spacing-md);
     border-radius: var(--radius-sm);
 }
@@ -42,24 +44,52 @@
 .projectGrid {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-2xl);
+    gap: var(--spacing-3xl);
     margin-top: var(--spacing-3xl);
 }
 
 /* ============================================
-   PROJECT CARD
+   PROJECT CARD - ENHANCED DEPTH
    ============================================ */
 
 .projectCard {
-    background-color: var(--bg-secondary);
+    background: linear-gradient(135deg,
+            var(--bg-secondary) 0%,
+            rgba(24, 24, 27, 0.8) 100%);
     border: 1px solid var(--border-subtle);
+    border-top: 2px solid var(--accent-primary);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-xl);
-    transition: border-color var(--duration-normal) var(--ease-out);
+    padding: var(--spacing-2xl);
+    transition: all var(--duration-normal) var(--ease-out);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Inner glow effect */
+.projectCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(99, 102, 241, 0.4) 20%,
+            rgba(99, 102, 241, 0.4) 80%,
+            transparent 100%);
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-out);
 }
 
 .projectCard:hover {
-    border-color: var(--accent-primary);
+    border-color: var(--border-focus);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.projectCard:hover::before {
+    opacity: 1;
 }
 
 /* ============================================
@@ -78,18 +108,25 @@
     margin-bottom: var(--spacing-xs);
 }
 
-.projectSubtitle {
+.projectType {
     font-size: 0.9375rem;
     font-weight: var(--weight-medium);
     color: var(--text-tertiary);
 }
 
 /* ============================================
-   CARD SECTIONS
+   CARD CONTENT
    ============================================ */
 
-.cardSection {
-    margin-top: var(--spacing-lg);
+.cardContent {
+    margin-bottom: var(--spacing-lg);
+}
+
+.description {
+    font-size: 1rem;
+    line-height: var(--line-height-body);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
 }
 
 .sectionLabel {
@@ -98,29 +135,23 @@
     text-transform: uppercase;
     letter-spacing: var(--letter-spacing-wide);
     color: var(--text-tertiary);
+    margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-sm);
 }
 
-.sectionText {
-    font-size: 1rem;
-    line-height: var(--line-height-body);
-    color: var(--text-secondary);
-}
-
 /* ============================================
-   LISTS
+   ACHIEVEMENTS / FEATURES LIST
    ============================================ */
 
-.highlightsList,
-.impactList {
+.achievementsList {
     list-style: none;
     padding: 0;
     margin: 0;
+    margin-bottom: var(--spacing-lg);
 }
 
-.highlightsList li,
-.impactList li {
-    font-size: 1rem;
+.achievementsList li {
+    font-size: 0.9375rem;
     line-height: var(--line-height-body);
     color: var(--text-secondary);
     padding-left: var(--spacing-lg);
@@ -128,25 +159,16 @@
     margin-bottom: var(--spacing-sm);
 }
 
-.highlightsList li:last-child,
-.impactList li:last-child {
+.achievementsList li:last-child {
     margin-bottom: 0;
 }
 
 /* Custom bullet points */
-.highlightsList li::before {
-    content: '•';
+.achievementsList li::before {
+    content: '→';
     position: absolute;
     left: 0;
     color: var(--accent-primary);
-    font-weight: var(--weight-semibold);
-}
-
-.impactList li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--accent-success);
     font-weight: var(--weight-semibold);
 }
 
@@ -158,7 +180,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-sm);
-    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
 }
 
 .techTag {
@@ -175,57 +197,32 @@
 }
 
 /* ============================================
-   CARD FOOTER (Links)
+   PROJECT ACTIONS
    ============================================ */
 
-.cardFooter {
+.actions {
     display: flex;
-    flex-wrap: wrap;
     gap: var(--spacing-md);
-    margin-top: var(--spacing-xl);
-    padding-top: var(--spacing-lg);
-    border-top: 1px solid var(--border-subtle);
 }
 
-/* Primary Link (View Code) */
-.linkPrimary {
+.codeLink {
     display: inline-flex;
     align-items: center;
-    font-size: 1rem;
+    gap: var(--spacing-xs);
+    font-size: 0.9375rem;
     font-weight: var(--weight-medium);
     color: var(--accent-primary);
     text-decoration: none;
     transition: color var(--duration-quick) var(--ease-out);
 }
 
-.linkPrimary:hover {
+.codeLink:hover {
     color: var(--accent-glow);
 }
 
-.linkPrimary:focus-visible {
+.codeLink:focus-visible {
     outline: 2px solid var(--border-focus);
-    outline-offset: 3px;
-    border-radius: var(--radius-sm);
-}
-
-/* Secondary Link (Live Demo) */
-.linkSecondary {
-    display: inline-flex;
-    align-items: center;
-    font-size: 1rem;
-    font-weight: var(--weight-medium);
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color var(--duration-quick) var(--ease-out);
-}
-
-.linkSecondary:hover {
-    color: var(--text-primary);
-}
-
-.linkSecondary:focus-visible {
-    outline: 2px solid var(--border-focus);
-    outline-offset: 3px;
+    outline-offset: 2px;
     border-radius: var(--radius-sm);
 }
 
@@ -236,24 +233,16 @@
 /* Tablet and up */
 @media (min-width: 768px) {
     .projects {
-        padding-top: var(--spacing-5xl);
-        padding-bottom: var(--spacing-5xl);
+        padding-top: var(--spacing-6xl);
+        padding-bottom: var(--spacing-6xl);
     }
 
     .projectCard {
-        padding: var(--spacing-2xl);
+        padding: var(--spacing-3xl);
     }
 
-    .cardHeader {
-        margin-bottom: var(--spacing-xl);
-    }
-
-    .cardSection {
-        margin-top: var(--spacing-xl);
-    }
-
-    .techStack {
-        gap: var(--spacing-md);
+    .achievementsList li {
+        font-size: 1rem;
     }
 
     .techTag {
@@ -263,13 +252,8 @@
 
 /* Desktop */
 @media (min-width: 1024px) {
-    .projects {
-        padding-top: var(--spacing-6xl);
-        padding-bottom: var(--spacing-6xl);
-    }
-
     .projectGrid {
-        gap: var(--spacing-3xl);
+        gap: var(--spacing-4xl);
     }
 }
 
@@ -279,11 +263,6 @@
 
 @media (prefers-reduced-motion: reduce) {
     .projectCard:hover {
-        transition: none;
-    }
-
-    .linkPrimary:hover,
-    .linkSecondary:hover {
-        transition: none;
+        transform: none;
     }
 }

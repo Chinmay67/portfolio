@@ -1,7 +1,7 @@
 /**
  * Hero Section Styles
  * Mobile-first, responsive layout
- * No animations (static only for Step 4)
+ * Enhanced with signature grid motif and gradient anchor
  * Uses design tokens from variables.css
  */
 
@@ -33,9 +33,11 @@
     font-weight: var(--weight-medium);
 }
 
-.badgeIcon {
-    color: var(--accent-success);
-    font-size: 1rem;
+.badgeDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent-success);
 }
 
 .badgeText {
@@ -81,10 +83,10 @@
 }
 
 /* ============================================
-   VALUE PROPOSITION
+   DESCRIPTION
    ============================================ */
 
-.valueProposition {
+.description {
     font-size: clamp(1rem, 2vw, 1.125rem);
     line-height: var(--line-height-body);
     color: var(--text-secondary);
@@ -93,18 +95,18 @@
 }
 
 /* ============================================
-   CTA GROUP
+   CTA BUTTONS
    ============================================ */
 
-.ctaGroup {
+.ctas {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-4xl);
 }
 
 /* Primary CTA Button */
-.primaryCta {
+.ctaPrimary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -119,20 +121,20 @@
     border: 2px solid var(--accent-primary);
 }
 
-.primaryCta:hover {
+.ctaPrimary:hover {
     background-color: var(--accent-glow);
     border-color: var(--accent-glow);
-    transform: translateY(-2px);
+    transform: scale(1.02);
     box-shadow: var(--shadow-glow);
 }
 
-.primaryCta:focus-visible {
+.ctaPrimary:focus-visible {
     outline: 2px solid var(--border-focus);
     outline-offset: 3px;
 }
 
 /* Secondary CTA Link */
-.secondaryCta {
+.ctaSecondary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -147,37 +149,15 @@
     border: 2px solid var(--border-subtle);
 }
 
-.secondaryCta:hover {
+.ctaSecondary:hover {
     border-color: var(--accent-primary);
     color: var(--accent-primary);
     background-color: var(--bg-secondary);
 }
 
-.secondaryCta:focus-visible {
+.ctaSecondary:focus-visible {
     outline: 2px solid var(--border-focus);
     outline-offset: 3px;
-}
-
-/* ============================================
-   SCROLL INDICATOR
-   ============================================ */
-
-.scrollIndicator {
-    position: absolute;
-    bottom: var(--spacing-2xl);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-sm);
-    opacity: 0.6;
-}
-
-.scrollArrow {
-    font-size: 1.5rem;
-    color: var(--text-tertiary);
-    /* Animation will be added in Step 11 */
 }
 
 /* ============================================
@@ -187,30 +167,73 @@
 /* Tablet and up */
 @media (min-width: 768px) {
     .hero {
-        padding-top: var(--spacing-5xl);
+        padding-top: var(--spacing-6xl);
         padding-bottom: var(--spacing-6xl);
     }
 
+    /* Right-side gradient anchor - desktop only */
+    .hero::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 45%;
+        height: 100%;
+        background: radial-gradient(ellipse at 80% 50%,
+                rgba(99, 102, 241, 0.08) 0%,
+                rgba(99, 102, 241, 0.04) 40%,
+                transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .hero>* {
+        position: relative;
+        z-index: 1;
+    }
+
     .badge {
-        font-size: 1rem;
-        padding: var(--spacing-sm) var(--spacing-lg);
+        font-size: 0.9375rem;
     }
 
-    .ctaGroup {
+    .ctas {
+        flex-direction: row;
         gap: var(--spacing-lg);
-    }
-
-    .primaryCta,
-    .secondaryCta {
-        padding: var(--spacing-lg) var(--spacing-2xl);
-        font-size: 1.0625rem;
     }
 }
 
 /* Desktop */
 @media (min-width: 1024px) {
-    .valueProposition {
-        max-width: 700px;
+    .hero {
+        padding-top: calc(var(--spacing-6xl) + var(--spacing-2xl));
+        padding-bottom: calc(var(--spacing-6xl) + var(--spacing-2xl));
+    }
+
+    /* Signature grid motif - subtle overlay */
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            repeating-linear-gradient(0deg,
+                transparent,
+                transparent 48px,
+                rgba(255, 255, 255, 0.025) 48px,
+                rgba(255, 255, 255, 0.025) 50px),
+            repeating-linear-gradient(90deg,
+                transparent,
+                transparent 48px,
+                rgba(255, 255, 255, 0.025) 48px,
+                rgba(255, 255, 255, 0.025) 50px);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .name {
+        font-size: clamp(3rem, 6vw, 4rem);
     }
 }
 
@@ -220,8 +243,8 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-    .primaryCta:hover,
-    .secondaryCta:hover {
+    .ctaPrimary:hover,
+    .ctaSecondary:hover {
         transform: none;
     }
 }

@@ -1,6 +1,7 @@
 /**
  * Contact Section Styles
  * Card-based contact links
+ * Enhanced with gradient backgrounds and left accent borders
  * Uses design tokens from variables.css
  */
 
@@ -51,7 +52,7 @@
 }
 
 /* ============================================
-   CONTACT METHODS
+   CONTACT METHODS - ENHANCED DEPTH
    ============================================ */
 
 .contactMethods {
@@ -66,22 +67,45 @@
     align-items: center;
     gap: var(--spacing-md);
     padding: var(--spacing-lg);
-    background-color: var(--bg-secondary);
+    background: linear-gradient(135deg,
+            var(--bg-secondary) 0%,
+            rgba(24, 24, 27, 0.6) 100%);
     border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     text-decoration: none;
-    transition: all var(--duration-normal) var(--ease-out);
+    transition: all var(--duration-quick) var(--ease-out);
+    position: relative;
+}
+
+/* Left accent border */
+.contactLink::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent-primary);
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    opacity: 0;
+    transition: opacity var(--duration-quick) var(--ease-out);
 }
 
 .contactLink:hover {
-    border-color: var(--accent-primary);
-    background-color: var(--bg-tertiary);
+    border-color: rgba(99, 102, 241, 0.4);
+    background: linear-gradient(135deg,
+            rgba(39, 39, 42, 1) 0%,
+            rgba(24, 24, 27, 0.8) 100%);
     transform: translateX(4px);
+}
+
+.contactLink:hover::before {
+    opacity: 1;
 }
 
 .contactLink:focus-visible {
     outline: 2px solid var(--border-focus);
-    outline-offset: 3px;
+    outline-offset: 2px;
 }
 
 .linkIcon {
