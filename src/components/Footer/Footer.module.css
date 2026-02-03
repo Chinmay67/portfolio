@@ -1,0 +1,123 @@
+/**
+ * Footer Styles
+ * Minimal, responsive layout
+ * Uses design tokens from variables.css
+ */
+
+.footer {
+    padding-top: var(--spacing-3xl);
+    padding-bottom: var(--spacing-3xl);
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    align-items: center;
+    text-align: center;
+}
+
+/* ============================================
+   BRANDING
+   ============================================ */
+
+.branding {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.name {
+    font-size: 1.125rem;
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+}
+
+.title {
+    font-size: 0.9375rem;
+    font-weight: var(--weight-regular);
+    color: var(--text-tertiary);
+}
+
+/* ============================================
+   QUICK LINKS
+   ============================================ */
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    justify-content: center;
+}
+
+.link {
+    font-size: 0.9375rem;
+    font-weight: var(--weight-medium);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--duration-quick) var(--ease-out);
+}
+
+.link:hover {
+    color: var(--accent-primary);
+}
+
+.link:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   COPYRIGHT
+   ============================================ */
+
+.copyright {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    line-height: var(--line-height-body);
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Tablet and up */
+@media (min-width: 768px) {
+    .footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        padding-top: var(--spacing-4xl);
+        padding-bottom: var(--spacing-4xl);
+    }
+
+    .branding {
+        align-items: flex-start;
+    }
+
+    .links {
+        gap: var(--spacing-xl);
+    }
+
+    .copyright {
+        text-align: right;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .footer {
+        padding-top: var(--spacing-5xl);
+        padding-bottom: var(--spacing-5xl);
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY: Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .link:hover {
+        transition: none;
+    }
+}

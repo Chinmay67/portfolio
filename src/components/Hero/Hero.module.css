@@ -1,0 +1,227 @@
+/**
+ * Hero Section Styles
+ * Mobile-first, responsive layout
+ * No animations (static only for Step 4)
+ * Uses design tokens from variables.css
+ */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: var(--spacing-4xl);
+    padding-bottom: var(--spacing-5xl);
+    position: relative;
+}
+
+/* ============================================
+   AVAILABILITY BADGE
+   ============================================ */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-xl);
+    font-size: 0.875rem;
+    font-weight: var(--weight-medium);
+}
+
+.badgeIcon {
+    color: var(--accent-success);
+    font-size: 1rem;
+}
+
+.badgeText {
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   NAME (H1)
+   ============================================ */
+
+.name {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: var(--weight-semibold);
+    line-height: var(--line-height-heading);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+/* ============================================
+   TITLE
+   ============================================ */
+
+.title {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-weight: var(--weight-medium);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ============================================
+   HEADLINE (H2)
+   ============================================ */
+
+.headline {
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-weight: var(--weight-semibold);
+    line-height: var(--line-height-heading);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    max-width: 800px;
+}
+
+/* ============================================
+   VALUE PROPOSITION
+   ============================================ */
+
+.valueProposition {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: var(--line-height-body);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-2xl);
+    max-width: 650px;
+}
+
+/* ============================================
+   CTA GROUP
+   ============================================ */
+
+.ctaGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-4xl);
+}
+
+/* Primary CTA Button */
+.primaryCta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-xl);
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+    font-weight: var(--weight-medium);
+    font-size: 1rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--duration-normal) var(--ease-out);
+    border: 2px solid var(--accent-primary);
+}
+
+.primaryCta:hover {
+    background-color: var(--accent-glow);
+    border-color: var(--accent-glow);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.primaryCta:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 3px;
+}
+
+/* Secondary CTA Link */
+.secondaryCta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-xl);
+    background-color: transparent;
+    color: var(--text-primary);
+    font-weight: var(--weight-medium);
+    font-size: 1rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--duration-normal) var(--ease-out);
+    border: 2px solid var(--border-subtle);
+}
+
+.secondaryCta:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background-color: var(--bg-secondary);
+}
+
+.secondaryCta:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 3px;
+}
+
+/* ============================================
+   SCROLL INDICATOR
+   ============================================ */
+
+.scrollIndicator {
+    position: absolute;
+    bottom: var(--spacing-2xl);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    opacity: 0.6;
+}
+
+.scrollArrow {
+    font-size: 1.5rem;
+    color: var(--text-tertiary);
+    /* Animation will be added in Step 11 */
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Tablet and up */
+@media (min-width: 768px) {
+    .hero {
+        padding-top: var(--spacing-5xl);
+        padding-bottom: var(--spacing-6xl);
+    }
+
+    .badge {
+        font-size: 1rem;
+        padding: var(--spacing-sm) var(--spacing-lg);
+    }
+
+    .ctaGroup {
+        gap: var(--spacing-lg);
+    }
+
+    .primaryCta,
+    .secondaryCta {
+        padding: var(--spacing-lg) var(--spacing-2xl);
+        font-size: 1.0625rem;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .valueProposition {
+        max-width: 700px;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY: Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .primaryCta:hover,
+    .secondaryCta:hover {
+        transform: none;
+    }
+}

@@ -1,0 +1,282 @@
+/**
+ * GitHub Section Styles
+ * Stats grid + repository cards
+ * Uses design tokens from variables.css
+ */
+
+.github {
+    padding-top: var(--spacing-4xl);
+    padding-bottom: var(--spacing-4xl);
+}
+
+/* ============================================
+   SECTION HEADING
+   ============================================ */
+
+.heading {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: var(--weight-semibold);
+    line-height: var(--line-height-heading);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+}
+
+/* Subtle underline accent */
+.heading::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-primary);
+    margin-top: var(--spacing-md);
+    border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   SKELETON LOADING STATE
+   ============================================ */
+
+.skeleton {
+    margin-top: var(--spacing-3xl);
+}
+
+.skeletonStats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.skeletonStat {
+    height: 80px;
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonRepos {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.skeletonCard {
+    height: 150px;
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ============================================
+   PROFILE STATS
+   ============================================ */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-3xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-lg);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+}
+
+.statValue {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: var(--weight-bold);
+    color: var(--accent-primary);
+    line-height: 1;
+}
+
+.statLabel {
+    font-size: 0.875rem;
+    font-weight: var(--weight-medium);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+/* ============================================
+   REPOSITORY CARDS
+   ============================================ */
+
+.repos {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.repoCard {
+    display: block;
+    padding: var(--spacing-xl);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: all var(--duration-normal) var(--ease-out);
+}
+
+.repoCard:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.repoCard:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 3px;
+}
+
+.repoName {
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.repoDescription {
+    font-size: 0.9375rem;
+    line-height: var(--line-height-body);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+/* ============================================
+   REPOSITORY METADATA
+   ============================================ */
+
+.repoMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.language {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+}
+
+.languageDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--accent-primary);
+}
+
+.stars,
+.forks {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+}
+
+/* ============================================
+   VIEW ALL LINK
+   ============================================ */
+
+.viewAll {
+    margin-top: var(--spacing-xl);
+    text-align: center;
+}
+
+.viewAllLink {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: var(--weight-medium);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--duration-quick) var(--ease-out);
+}
+
+.viewAllLink:hover {
+    color: var(--accent-primary);
+}
+
+.viewAllLink:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Tablet and up */
+@media (min-width: 768px) {
+    .github {
+        padding-top: var(--spacing-5xl);
+        padding-bottom: var(--spacing-5xl);
+    }
+
+    .stats {
+        gap: var(--spacing-xl);
+    }
+
+    .stat {
+        padding: var(--spacing-xl);
+    }
+
+    .repos {
+        gap: var(--spacing-xl);
+    }
+
+    .repoCard {
+        padding: var(--spacing-2xl);
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .github {
+        padding-top: var(--spacing-6xl);
+        padding-bottom: var(--spacing-6xl);
+    }
+
+    .repos {
+        gap: var(--spacing-2xl);
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY: Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .repoCard:hover {
+        transform: none;
+        transition: none;
+    }
+
+    .skeletonStat,
+    .skeletonCard {
+        animation: none;
+    }
+}

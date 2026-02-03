@@ -1,0 +1,192 @@
+/**
+ * Contact Section Styles
+ * Card-based contact links
+ * Uses design tokens from variables.css
+ */
+
+.contact {
+    padding-top: var(--spacing-4xl);
+    padding-bottom: var(--spacing-4xl);
+}
+
+/* ============================================
+   SECTION HEADING
+   ============================================ */
+
+.heading {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: var(--weight-semibold);
+    line-height: var(--line-height-heading);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+}
+
+/* Subtle underline accent */
+.heading::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-primary);
+    margin-top: var(--spacing-md);
+    border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   CONTENT
+   ============================================ */
+
+.content {
+    margin-top: var(--spacing-3xl);
+    max-width: 600px;
+}
+
+.intro {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: var(--line-height-body);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-2xl);
+}
+
+/* ============================================
+   CONTACT METHODS
+   ============================================ */
+
+.contactMethods {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.contactLink {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: all var(--duration-normal) var(--ease-out);
+}
+
+.contactLink:hover {
+    border-color: var(--accent-primary);
+    background-color: var(--bg-tertiary);
+    transform: translateX(4px);
+}
+
+.contactLink:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 3px;
+}
+
+.linkIcon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.linkContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.linkLabel {
+    font-size: 0.875rem;
+    font-weight: var(--weight-semibold);
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.linkValue {
+    font-size: 1rem;
+    font-weight: var(--weight-medium);
+    color: var(--text-primary);
+}
+
+/* ============================================
+   CTA
+   ============================================ */
+
+.cta {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.resumeButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-xl);
+    background-color: transparent;
+    color: var(--text-primary);
+    font-weight: var(--weight-medium);
+    font-size: 1rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--duration-normal) var(--ease-out);
+    border: 2px solid var(--border-subtle);
+}
+
+.resumeButton:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background-color: var(--bg-secondary);
+}
+
+.resumeButton:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 3px;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Tablet and up */
+@media (min-width: 768px) {
+    .contact {
+        padding-top: var(--spacing-5xl);
+        padding-bottom: var(--spacing-5xl);
+    }
+
+    .content {
+        margin-top: var(--spacing-4xl);
+    }
+
+    .contactMethods {
+        gap: var(--spacing-lg);
+    }
+
+    .contactLink {
+        padding: var(--spacing-xl);
+    }
+
+    .resumeButton {
+        padding: var(--spacing-lg) var(--spacing-2xl);
+        font-size: 1.0625rem;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .contact {
+        padding-top: var(--spacing-6xl);
+        padding-bottom: var(--spacing-6xl);
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY: Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .contactLink:hover {
+        transform: none;
+    }
+}

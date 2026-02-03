@@ -1,0 +1,114 @@
+/**
+ * CSS Custom Properties (Design Tokens)
+ * Single source of truth for colors, spacing, and typography
+ * Dark mode only (no light mode variants)
+ */
+
+:root {
+  /* ============================================
+     COLOR TOKENS - DARK MODE
+     ============================================ */
+  
+  /* Background Layers */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1f1f1f;
+  
+  /* Text */
+  --text-primary: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  
+  /* Accent Colors */
+  --accent-primary: #3b82f6;
+  --accent-glow: #60a5fa;
+  --accent-success: #10b981;
+  
+  /* Borders & Dividers */
+  --border-subtle: #27272a;
+  --border-focus: #3b82f6;
+
+  /* ============================================
+     SPACING SCALE (rem-based)
+     ============================================ */
+  
+  /* Micro */
+  --spacing-xs: 0.25rem;    /* 4px */
+  --spacing-sm: 0.5rem;     /* 8px */
+  
+  /* Small */
+  --spacing-md: 1rem;       /* 16px */
+  --spacing-lg: 1.5rem;     /* 24px */
+  
+  /* Medium */
+  --spacing-xl: 2rem;       /* 32px */
+  --spacing-2xl: 3rem;      /* 48px */
+  
+  /* Large */
+  --spacing-3xl: 4rem;      /* 64px */
+  --spacing-4xl: 6rem;      /* 96px */
+  
+  /* XL */
+  --spacing-5xl: 8rem;      /* 128px */
+  --spacing-6xl: 10rem;     /* 160px */
+
+  /* ============================================
+     TYPOGRAPHY
+     ============================================ */
+  
+  /* Font Families */
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+  
+  /* Font Weights */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  
+  /* Line Heights */
+  --line-height-tight: 1.1;
+  --line-height-heading: 1.2;
+  --line-height-body: 1.6;
+  --line-height-relaxed: 1.7;
+  
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.02em;
+
+  /* ============================================
+     LAYOUT
+     ============================================ */
+  
+  /* Maximum Content Width */
+  --max-width: 1200px;
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.2);
+
+  /* ============================================
+     TRANSITIONS
+     ============================================ */
+  
+  /* Timing Functions */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Durations */
+  --duration-quick: 0.15s;
+  --duration-normal: 0.2s;
+  --duration-slow: 0.3s;
+  --duration-slower: 0.4s;
+}

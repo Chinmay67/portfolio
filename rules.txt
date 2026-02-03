@@ -1,0 +1,2142 @@
+AUTHORITATIVE INSTRUCTION
+
+This file is the single source of truth for this project.
+All design, layout, animation, and implementation decisions MUST follow this document exactly.
+
+If there is any ambiguity:
+- Do NOT invent new patterns
+- Do NOT add features
+- Do NOT refactor architecture
+- Ask for clarification instead
+
+Silently deviating from this document is considered incorrect behavior.
+
+I understand the rules:
+
+✓ No jumping ahead
+✓ No code generation unless explicitly requested
+✓ Work in clear, numbered phases
+✓ Be concise but precise
+✓ Wait for confirmation between phases
+
+
+PHASE 1 — INFORMATION ARCHITECTURE
+First 10 Seconds Goal
+What the viewer should understand immediately:
+
+Who you are (Software Developer, backend-heavy full-stack)
+What you specialize in (scalable backend systems, MERN stack)
+Your value proposition (building robust, production-ready applications)
+One clear call-to-action (availability status or contact)
+Site Map & Section Breakdown
+1. Hero Section
+Purpose: Establish identity and credibility within 3 seconds
+Key Content:
+
+Name + core title (e.g., "Full-Stack Software Developer")
+One-line value proposition focused on backend expertise
+Current availability status (open to opportunities / working at X)
+Primary CTA (contact or resume download)
+Why it exists: Recruiters decide in seconds whether to keep reading. This anchors their understanding.
+
+2. Technical Expertise
+Purpose: Demonstrate breadth and depth of technical skills
+Key Content:
+
+Backend: Node.js, Express, PostgreSQL, MongoDB, Redis
+Cloud & DevOps: AWS (specific services), Docker, CI/CD
+Frontend: React, modern JavaScript/TypeScript
+Tools & Practices: Git, testing frameworks, system design patterns
+Why it exists: Recruiters scan for keyword matches. Founders assess if you can handle their stack. Backend-first ordering signals your strength.
+
+3. Featured Projects (3-4 projects)
+Purpose: Prove competence through real-world application
+Key Content: For each project:
+
+Project name + one-line description
+Problem solved (business context)
+Technical approach (architecture, stack, AWS services used)
+Impact metrics or outcomes (if available)
+Link to live demo or GitHub (if applicable)
+Why it exists: Showcases not just what you built, but how you think about solving problems. Backend complexity should be visible.
+
+4. Professional Experience (optional but recommended)
+Purpose: Establish credibility through work history
+Key Content:
+
+Company name, role, duration
+2-3 key achievements per role (metric-driven when possible)
+Technologies used in context
+Why it exists: Recruiters need employment verification. Founders want to see you've shipped in real environments. Skip if no professional experience; lean harder on projects.
+
+5. About / Background
+Purpose: Humanize and provide context
+Key Content:
+
+Brief professional narrative (how you got into development, what drives you)
+Your approach to software development (e.g., scalability-first, testing mindset)
+Optional: education, certifications, location
+Why it exists: After qualifying you technically, this builds connection and trust. Founders especially want to know who they're working with.
+
+6. Contact / CTA
+Purpose: Make next steps frictionless
+Key Content:
+
+Email (primary)
+LinkedIn, GitHub
+Optional: calendly link, preferred contact method
+Restate availability
+Why it exists: After convincing them, don't make them hunt for how to reach you.
+
+Narrative Flow (Top to Bottom)
+Immediate clarity → You're a backend-focused full-stack developer
+Technical credibility → Here's what I know (comprehensive but scannable)
+Applied competence → Here's what I've built (proof of execution)
+Professional validation → Here's where I've worked (optional trust layer)
+Human connection → Here's who I am (relatability)
+Easy conversion → Here's how to reach me (low friction)
+
+
+PHASE 2 — VISUAL DESIGN SYSTEM
+Explicit Non-Goals:
+- No excessive animations
+- No parallax-heavy scrolling
+- No autoplay media
+- No visual noise that competes with content
+
+Visual Mood
+Sophisticated technical minimalism. Clean, focused, and confidence-inspiring with subtle depth. The design should feel like production-grade software—polished, intentional, and built to scale.
+
+Color Strategy
+Default: Dark mode
+Rationale: Aligns with developer culture, reduces eye strain, makes code examples readable, and conveys technical sophistication.
+
+Color Tokens
+Background Layers:
+
+bg-primary: #0a0a0a (deep black, main canvas)
+bg-secondary: #141414 (cards, elevated surfaces)
+bg-tertiary: #1f1f1f (hover states, subtle elevation)
+Text:
+
+text-primary: #e4e4e7 (high contrast, body text)
+text-secondary: #a1a1aa (muted, descriptions, metadata)
+text-tertiary: #71717a (de-emphasized, labels)
+
+Light Mode Policy:
+Light mode is an optional secondary theme using inverted neutral tones.
+Dark mode is the canonical design and must be implemented first.
+Light mode is not required for the initial version (MVP).
+Accent Colors:
+Accent Usage Rules:
+- Accent colors must be used sparingly.
+- Never use more than one accent color on a single screen.
+- accent-primary is reserved strictly for primary CTAs, links, and active states.
+- accent-glow is used only for hover, focus, or subtle emphasis.
+- accent-success is used only for availability indicators or success metrics.
+
+
+accent-primary: #3b82f6 (trust blue, primary CTAs, links)
+accent-glow: #60a5fa (lighter variant for hover/focus states)
+accent-success: #10b981 (green, for availability badges or metrics)
+Borders & Dividers:
+
+border-subtle: #27272a (structural dividers)
+border-focus: #3b82f6 (interactive element focus rings)
+Typography
+Typography Metrics:
+- Heading line-height: 1.1–1.2
+- Body line-height: 1.6–1.7
+- Large headings may use slight negative letter-spacing for visual balance.
+
+Heading Font:
+'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif
+
+Rationale: Clean, modern, excellent readability. Industry standard for tech products (Linear, Vercel).
+Weights: 600 (semi-bold) for primary headings, 500 (medium) for subheadings
+Body Font:
+'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif
+
+Rationale: Consistency aids scannability; Inter performs equally well for body text.
+Weights: 400 (regular) for body, 300 (light) for large descriptive text
+Monospace Font:
+'JetBrains Mono', 'Fira Code', 'Monaco', monospace
+
+Rationale: For tech stack tags, code snippets, technical metadata. JetBrains Mono is optimized for developers.
+Weight: 400 (regular)
+Spacing & Layout Philosophy
+Grid System:
+12-column responsive grid with generous whitespace
+
+Spacing Scale (rem-based):
+
+Micro: 0.25rem, 0.5rem (tight padding, icon gaps)
+Small: 1rem, 1.5rem (component internal spacing)
+Medium: 2rem, 3rem (section padding, card gaps)
+Large: 4rem, 6rem (section dividers, vertical rhythm)
+XL: 8rem, 10rem (hero section breathing room)
+Layout Principles:
+
+Generous vertical rhythm — Let sections breathe; backend work is complex and needs space to be digested
+Left-aligned hierarchy — Scannable F-pattern for recruiters
+Maximum content width: 1200px centered, prevents eye strain on ultrawide monitors
+Mobile-first progression — Stack cleanly at small sizes, expand horizontally on desktop
+Design Inspirations
+Linear — Minimal navigation, focus on content, subtle gradients
+Vercel — Dark mode execution, typography hierarchy, technical confidence
+GitHub Profile Pages — Developer-centric layout, project showcase clarity
+Stripe — Sophisticated use of space, trust-building through restraint
+Design Principles
+Content is king — Design serves the work, not the other way around
+Subtle motion — Micro-interactions only (hover states, smooth transitions), no distractions
+Scannable hierarchy — Recruiters should find keywords in 30 seconds
+Progressive disclosure — Show enough to intrigue, link to details
+Performance as design — Fast load, no bloat, no unnecessary assets
+Performance Constraint:
+Avoid heavy raster images and unnecessary assets.
+Prefer vector graphics, CSS-based effects, and lightweight SVGs.
+Performance is treated as a design feature.
+
+
+this is for phase 3
+1. HERO SECTION
+Section Order (Locked):
+1. Hero
+2. Technical Expertise
+3. Featured Projects
+4. Professional Experience
+5. About
+6. Freelance / Clients (optional)
+7. GitHub Activity
+8. Contact
+9. Footer
+
+This order is intentional and must not be changed.
+
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│   [AVAILABILITY BADGE]                        ← static     │
+│                                                             │
+│   Hi, I'm [NAME]                              ← H1         │
+│                                                             │
+│   Full-Stack Software Developer                ← H2        │
+│   specialized in scalable backend systems                  │
+│                                                             │
+│   One-line value proposition describing your               │
+│   approach to building production-ready apps               │
+│                                                             │
+│   [PRIMARY CTA BUTTON]  [SECONDARY LINK]      ← dynamic    │
+│                                                             │
+│                                                             │
+│   ↓ (subtle scroll indicator)                 ← animated   │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+HIERARCHY:
+1. Badge (draws eye first, signals availability)
+2. Name (establishes identity)
+3. Title + specialization (establishes expertise)
+4. Value prop (clarifies what you offer)
+5. CTAs (conversion)
+
+CTA PLACEMENT:
+- Primary: "View My Work" or "Get In Touch"
+- Secondary: "Download Resume" or "View GitHub"
+Constraint:
+Hero section must fit entirely within one viewport height on desktop (no scrolling required to understand identity and value).
+
+2. SKILLS / TECHNICAL EXPERTISE SECTION
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│   Technical Expertise                         ← H2         │
+│   ────────────────                           ← subtle line │
+│                                                             │
+│   BACKEND                                     ← Category   │
+│   [Node.js] [Express] [PostgreSQL]            ← Tag group  │
+│   [MongoDB] [Redis] [REST APIs]                            │
+│                                                             │
+│   CLOUD & DEVOPS                                           │
+│   [AWS EC2] [AWS S3] [AWS Lambda]                          │
+│   [Docker] [CI/CD] [Nginx]                                 │
+│                                                             │
+│   FRONTEND                                                 │
+│   [React] [TypeScript] [Next.js]                           │
+│   [HTML5] [CSS3] [Responsive Design]                       │
+│                                                             │
+│   TOOLS & PRACTICES                                        │
+│   [Git] [Jest] [System Design]                             │
+│   [Agile] [TDD] [API Design]                               │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+HIERARCHY:
+1. Section title
+2. Category labels (backend-first ordering)
+3. Technology tags (scannable, monospace font)
+
+VISUAL NOTES:
+- Tags are static, styled with borders
+- Backend appears first (signals strength)
+- Grouped logically by category
+- Left-aligned for F-pattern scanning
+- Interaction Rule:
+Tags may show a subtle hover state (border or background change) but must not expand, animate, or reveal tooltips by default.
+
+3. PROJECTS SECTION
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│   Featured Projects                           ← H2         │
+│   ────────────────                                         │
+│                                                             │
+│   ┌──────────────────────────────────────────────────┐    │
+│   │                                                   │    │
+│   │  [PROJECT THUMBNAIL or ICON]    ← static visual  │    │
+│   │                                                   │    │
+│   │  Project Name                   ← H3             │    │
+│   │  One-line description                            │    │
+│   │                                                   │    │
+│   │  PROBLEM                                          │    │
+│   │  Brief context on what business problem          │    │
+│   │  this solved or what gap it filled               │    │
+│   │                                                   │    │
+│   │  SOLUTION                                         │    │
+│   │  Technical approach: architecture, AWS           │    │
+│   │  services, database design decisions             │    │
+│   │                                                   │    │
+│   │  TECH STACK                                       │    │
+│   │  [React] [Node.js] [PostgreSQL] [AWS S3]         │    │
+│   │                                                   │    │
+│   │  IMPACT (if applicable)                          │    │
+│   │  • Metric 1 (e.g., handled 10k+ requests/day)   │    │
+│   │  • Metric 2 (e.g., 40% performance improvement) │    │
+│   │                                                   │    │
+│   │  [View Live Demo →]  [View Code →]  ← dynamic    │    │
+│   │                                                   │    │
+│   └──────────────────────────────────────────────────┘    │
+│                                                             │
+│   [Repeat card for 2-3 more projects]                      │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+HIERARCHY PER PROJECT:
+1. Visual hook (thumbnail/icon)
+2. Project name
+3. Problem statement (context)
+4. Solution approach (technical depth)
+5. Tech stack tags
+6. Impact metrics (validation)
+7. Links (exploration)
+
+CTA PLACEMENT:
+- Links at bottom of each card
+- "View Live Demo" primary, "View Code" secondary
+Disclosure Rule:
+Project cards may be expandable (accordion or modal) for detailed content.
+Collapsed view must show:
+- Project name
+- One-line description
+- Tech stack
+- Primary CTA
+
+Expanded view may show:
+- Problem
+- Solution
+- Impact
+
+
+4. EXPERIENCE SECTION
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│   Professional Experience                     ← H2         │
+│   ────────────────                                         │
+│                                                             │
+│   ┌──────────────────────────────────────────────────┐    │
+│   │                                                   │    │
+│   │  [COMPANY LOGO or INITIAL]      ← small icon     │    │
+│   │                                                   │    │
+│   │  Job Title                      ← H3             │    │
+│   │  Company Name                   ← H4             │    │
+│   │  Jan 2023 – Present             ← metadata       │    │
+│   │                                                   │    │
+│   │  • Key achievement with metric (e.g., built      │    │
+│   │    scalable API that reduced response time by    │    │
+│   │    50%)                                           │    │
+│   │  • Second achievement with business impact       │    │
+│   │  • Third achievement highlighting tech depth     │    │
+│   │                                                   │    │
+│   │  TECHNOLOGIES USED                                │    │
+│   │  [Node.js] [AWS] [PostgreSQL] [Docker]           │    │
+│   │                                                   │    │
+│   └──────────────────────────────────────────────────┘    │
+│                                                             │
+│   [Repeat for other roles, chronological]                  │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+HIERARCHY PER ROLE:
+1. Company identifier (logo/icon)
+2. Job title
+3. Company name + dates
+4. Achievement bullets (metric-driven)
+5. Tech stack used
+
+VISUAL NOTES:
+- Static content
+- Timeline flows top to bottom (most recent first)
+- Bullets must start with action verbs
+-Constraint:
+Each role must fit within one visible card without scrolling.
+Maximum 3 bullet points per role.
+
+5. ABOUT SECTION
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│   About Me                                    ← H2         │
+│   ────────────────                                         │
+│                                                             │
+│   ┌─────────────┐  ┌────────────────────────────────┐     │
+│   │             │  │                                 │     │
+│   │  [PROFILE]  │  │  2–3 paragraph professional     │     │
+│   │  [PHOTO]    │  │  narrative:                     │     │
+│   │             │  │                                 │     │
+│   │  (optional) │  │  • How you got into development │     │
+│   │             │  │  • What drives your work        │     │
+│   │             │  │  • Your development philosophy  │     │
+│   └─────────────┘  │                                 │     │
+│                    │  Brief mention of education,    │     │
+│                    │  certifications, or location    │     │
+│                    │                                 │     │
+│                    └────────────────────────────────┘     │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+HIERARCHY:
+1. Section title
+2. Profile photo (optional, adds humanity)
+3. Narrative text (left-aligned, readable line length)
+
+VISUAL NOTES:
+- Two-column layout on desktop (photo left, text right)
+- Single column on mobile (photo above text)
+- Static content
+- Conversational but professional tone
+- Tone Rule:
+Write in first person.
+Avoid buzzwords and generic claims.
+Focus on mindset and approach, not self-praise.
+
+6. FREELANCE / CLIENTS SECTION
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│   Work With Me                                ← H2         │
+│   ────────────────                                         │
+│                                                             │
+│   I'm available for freelance projects and                 │
+│   consulting engagements focused on:                       │
+│                                                             │
+│   ✓ Backend API development                                │
+│   ✓ Database architecture & optimization                   │
+│   ✓ AWS cloud infrastructure                               │
+│   ✓ Full-stack web applications                            │
+│                                                             │
+│   ┌────────────────────────────────────────┐              │
+│   │  CLIENT LOGO  │  CLIENT LOGO  │  etc.  │  ← optional  │
+│   └────────────────────────────────────────┘              │
+│                                                             │
+│   [Get In Touch →]                          ← CTA          │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+HIERARCHY:
+1. Section title
+2. Value proposition (what you offer)
+3. Service checklist
+4. Social proof (client logos if available)
+5. CTA
+
+CTA PLACEMENT:
+- Primary button linking to contact section
+- Or external calendly/email
+
+VISUAL NOTES:
+- Skip this section if not freelancing
+- Logos are static, arranged in grid
+- Conditional Rendering:
+If no active freelance offering, hide this section entirely rather than showing placeholders.
+
+7. GITHUB ACTIVITY SECTION
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│   Open Source & Contributions                 ← H2         │
+│   ────────────────                                         │
+│                                                             │
+│   ┌──────────────────────────────────────────────────┐    │
+│   │                                                   │    │
+│   │  [GitHub Stats Card]              ← dynamic       │    │
+│   │  Total Stars • Repositories • Contributions      │    │
+│   │                                                   │    │
+│   └──────────────────────────────────────────────────┘    │
+│                                                             │
+│   Featured Repositories:                                   │
+│                                                             │
+│   ┌─────────────────────────┐  ┌─────────────────────┐   │
+│   │ Repo Name               │  │ Repo Name           │   │
+│   │ Description             │  │ Description         │   │
+│   │ [Language] ⭐ 45        │  │ [Language] ⭐ 23    │   │
+│   └─────────────────────────┘  └─────────────────────┘   │
+│                                                             │
+│   [View All on GitHub →]                   ← CTA          │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+HIERARCHY:
+1. Section title
+2. GitHub stats overview
+3. Featured repository cards
+4. Link to full GitHub profile
+
+VISUAL NOTES:
+- Stats can be fetched dynamically via GitHub API
+- Repository cards show language, stars, description
+- Grid layout (2-3 columns on desktop)
+8. CONTACT SECTION
+
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│   Let's Build Something                       ← H2         │
+│   ────────────────                                         │
+│                                                             │
+│   I'm currently [AVAILABLE/NOT AVAILABLE] for new          │
+│   opportunities and collaborations.                        │
+│                                                             │
+│                                                             │
+│   ┌──────────────────────────────────────────────────┐    │
+│   │  EMAIL                                            │    │
+│   │  your.email@domain.com            ← clickable     │    │
+│   │                                                   │    │
+│   │  LINKEDIN                                         │    │
+│   │  linkedin.com/in/yourprofile      ← clickable     │    │
+│   │                                                   │    │
+│   │  GITHUB                                           │    │
+│   │  github.com/yourusername          ← clickable     │    │
+│   │                                                   │    │
+│   │  [Optional: Calendly or preferred contact]       │    │
+│   │                                                   │    │
+│   └──────────────────────────────────────────────────┘    │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+HIERARCHY:
+1. Section title (inviting)
+2. Availability restatement
+3. Contact methods (email primary)
+
+CTA PLACEMENT:
+- Each contact method is a clickable link
+- Email opens mail client
+- Social links open in new tab
+
+VISUAL NOTES:
+- Large, easy-to-click contact links
+- Icons alongside each method
+- Static content except availability badge
+- Conversion Rule:
+Email is always the primary contact method.
+All other links are secondary and visually de-emphasized.
+
+9. FOOTER
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│   ┌────────────────────────────────────────────────────┐  │
+│   │                                                     │  │
+│   │  [NAME]                  [Email] [LinkedIn] [GitHub]  │
+│   │  Software Developer                                 │  │
+│   │                                                     │  │
+│   │  © 2026 • Built with [Tech Stack]                  │  │
+│   │                                                     │  │
+│   └────────────────────────────────────────────────────┘  │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+HIERARCHY:
+1. Name + title (branding consistency)
+2. Quick social links
+3. Copyright + tech credit
+
+VISUAL NOTES:
+- Minimal, single row on desktop
+- Stacks on mobile
+- All links static
+- Optional: "Back to Top" link
+WIREFRAME SUMMARY
+Visual Hierarchy Pattern (All Sections):
+
+Section title (H2, left-aligned)
+Divider or spacing
+Content (left-aligned blocks)
+CTAs (when applicable, beneath content)
+Static vs Dynamic Elements:
+
+Static: All text, images, tags, most CTAs
+Dynamic: Hover states on links/buttons, GitHub stats (API-driven), scroll indicators
+No heavy animations — only micro-interactions (hover, focus)
+Mobile Considerations:
+
+All sections stack vertically
+Cards go single-column
+CTAs remain full-width and prominent
+Touch-friendly spacing (minimum 44px tap targets)
+Global Wireframe Rules:
+- Left-aligned content throughout
+- Maximum readable line width (~65–75 characters)
+- No section should feel visually dense
+- Whitespace is intentional and must be preserved
+
+
+PHASE 4 — INTERACTIONS & ANIMATIONS (DESIGN LEVEL)
+Explicit Motion Non-Goals:
+- No page transition animations
+- No cursor-following effects
+- No scroll-jacking
+- No background video or animated noise
+- No continuous animations outside subtle availability indicators
+
+Animation Philosophy
+Guiding Principle: Motion should provide feedback, guidance, and delight—never decoration.
+Motion Severity Levels:
+- Level 0: No motion (used when prefers-reduced-motion is enabled)
+- Level 1: Micro-interactions only (hover, focus, feedback)
+- Level 2: Entry animations (fade + slide only)
+- Level 3: Expand/collapse interactions (projects, accordions)
+
+This portfolio must not exceed Level 3 motion at any point.
+
+Performance Constraints:
+
+Total page weight budget: <500KB initial load
+Animations must run at 60fps on mid-range devices
+Use CSS transforms (translate, scale, opacity) over layout-affecting properties
+Avoid animating width, height, top, left
+Animation Library Strategy
+When to Use Framer Motion
+✓ For React components with complex state-driven animations
+✓ When you need layout animations (e.g., project cards expanding)
+✓ For scroll-triggered animations with viewport detection
+✓ Stagger effects on lists (tech tags, project cards)
+✓ Recommended for this portfolio — covers 90% of needs
+Animation Constraint:
+Each element may have only one primary animation on entry.
+No stacking multiple effects (e.g., fade + slide + scale simultaneously) unless explicitly defined.
+
+
+When GSAP is Justified
+✓ Complex timeline-based sequences (not needed here)
+✓ SVG morphing or path animations (if logo animates)
+✓ Physics-based interactions (overkill for this use case)
+✓ Not recommended for MVP — Framer Motion is sufficient
+
+Pure CSS for:
+✓ Simple hover states (button hover, link underlines)
+✓ Focus rings
+✓ Static transitions (<0.3s duration)
+
+Section-by-Section Motion Design
+Scroll Trigger Rule:
+Scroll-triggered animations must run only once per page load.
+Animations must not replay when scrolling back up.
+
+1. HERO SECTION
+Entry Animation (on page load):
+
+Availability badge: Fade in + subtle scale (0.95 → 1.0) — 0.4s delay
+Name (H1): Fade in + slide up 20px — 0.2s delay
+Title + value prop: Fade in + slide up 15px — 0.3s delay
+CTAs: Fade in + slide up 10px — 0.5s delay
+Scroll indicator: Fade in — 0.8s delay, then gentle bounce loop (2s interval)
+Timing Strategy: Stagger by 100ms between elements for natural rhythm
+
+Hover Interactions:
+
+Primary CTA button:
+Scale: 1.0 → 1.02
+Box shadow expands slightly
+Background color shifts lighter (accent-primary → accent-glow)
+Transition: 0.2s ease-out
+Secondary link:
+Underline slides in from left
+Color: text-secondary → text-primary
+Transition: 0.15s ease
+Scroll Behavior:
+
+Scroll indicator fades out when user scrolls past 100px
+Micro-interactions:
+
+Availability badge pulses gently if status is "Available" (subtle scale 1.0 → 1.05, 3s loop)
+2. TECHNICAL EXPERTISE SECTION
+Entry Animation (scroll-triggered, when 20% in viewport):
+
+Section title: Fade in + slide up 15px
+Tech tags: Stagger fade-in by category (50ms delay between each tag)
+Each tag slides up 10px as it fades in
+Backend category animates first, then Cloud, then Frontend, etc.
+Hover Interactions:
+
+Tech tags:
+Border color: border-subtle → accent-primary
+Background: transparent → bg-tertiary
+Slight glow effect (box-shadow with accent color at 20% opacity)
+Transition: 0.15s ease
+No tooltip or popup — hover is purely visual feedback
+Scroll Behavior:
+
+Static once animated in
+Micro-interactions:
+
+None (content is king here)
+3. PROJECTS SECTION
+
+
+Entry Animation (scroll-triggered, when 30% in viewport):
+
+Section title: Fade in + slide up 15px
+Project cards: Stagger fade-in (150ms delay between cards)
+Each card slides up 20px as it fades in
+Opacity: 0 → 1
+Hover Interactions:
+
+Project card (entire container):
+Lift effect: translateY(0 → -8px)
+Border color: border-subtle → border-focus (subtle accent glow)
+Box shadow expands (soft glow)
+Transition: 0.25s ease-out
+Cursor changes to pointer if card is clickable/expandable
+CTA links inside card:
+"View Live Demo" button: Same hover as Hero CTA
+"View Code" link: Underline slide-in + color shift
+Arrow icon (→) translates right by 4px on hover
+Layout Stability Rule:
+Expanding project cards must not cause page reflow that shifts content above the fold.
+Prefer internal expansion or modal-based disclosure to preserve scroll position.
+Scroll Behavior:
+
+Static after entry animation
+Optional: Subtle parallax on card images (moves -10px vertically as user scrolls) — use sparingly
+Micro-interactions:
+
+If using expandable cards (accordion):
+Expand animation: Height auto-animates with easing (0.3s)
+Chevron icon rotates 90° when expanded
+Other cards remain in place (no layout shift)
+4. EXPERIENCE SECTION
+Entry Animation (scroll-triggered, when 25% in viewport):
+
+Section title: Fade in + slide up 15px
+Experience cards: Stagger fade-in (120ms delay between roles)
+Each card slides up 20px as it fades in
+Hover Interactions:
+
+Experience card:
+Border color brightens: border-subtle → accent-primary (10% opacity)
+Background shifts slightly: bg-secondary → bg-tertiary
+Transition: 0.2s ease
+No lift effect — keeps focus on content, not decoration
+Tech stack tags:
+Same hover as Skills section (border + background change)
+Scroll Behavior:
+
+Static after entry
+Micro-interactions:
+
+Company logo/icon has subtle scale on card hover (1.0 → 1.05)
+5. ABOUT SECTION
+Entry Animation (scroll-triggered, when 30% in viewport):
+
+Section title: Fade in + slide up 15px
+Profile photo: Fade in + subtle scale (0.95 → 1.0) — 0.1s delay
+Text paragraphs: Fade in + slide up 10px — 0.2s delay
+Hover Interactions:
+
+Profile photo (if present):
+Slight brightness increase (filter: brightness(1.0 → 1.1))
+Transition: 0.3s ease
+No zoom or dramatic effects
+Scroll Behavior:
+
+Static after entry
+Micro-interactions:
+
+None (maintains human, conversational tone — no gimmicks)
+6. FREELANCE / CLIENTS SECTION
+Entry Animation (scroll-triggered, when 25% in viewport):
+
+Section title: Fade in + slide up 15px
+Service checklist items: Stagger fade-in (80ms delay per item)
+Client logos: Fade in simultaneously after checklist (0.3s delay)
+CTA button: Fade in + slide up 10px (0.4s delay)
+Hover Interactions:
+
+CTA button: Same as Hero CTA
+Client logos:
+Grayscale filter lifts slightly (grayscale(100%) → grayscale(30%))
+Opacity: 0.6 → 1.0
+Transition: 0.2s ease
+Scroll Behavior:
+
+Static after entry
+Micro-interactions:
+
+Checkmarks (✓) could have a subtle scale bounce when they animate in (1.0 → 1.1 → 1.0, 0.3s)
+7. GITHUB ACTIVITY SECTION
+Entry Animation (scroll-triggered, when 30% in viewport):
+
+Section title: Fade in + slide up 15px
+GitHub stats card: Fade in + slide up 20px — 0.1s delay
+Repository cards: Stagger fade-in (100ms delay between cards)
+Hover Interactions:
+
+Repository cards:
+Lift effect: translateY(0 → -6px)
+Border color: border-subtle → accent-primary
+Box shadow expands
+Transition: 0.2s ease-out
+"View All on GitHub" CTA:
+Same as secondary link style (underline + color shift)
+Scroll Behavior:
+
+Static after entry
+If GitHub stats are dynamic (API-driven):
+Loading skeleton shows during fetch
+Smooth transition when real data populates (fade in, 0.3s)
+Data Animation Rule:
+Counting animations (stars, contributions) must run only once per session.
+Do not re-animate on re-render or refetch.
+
+Micro-interactions:
+
+Star count animates in with counting effect (0 → final number, 0.8s) when card enters viewport
+Language badge pulses subtly on hover (scale 1.0 → 1.05)
+8. CONTACT SECTION
+Entry Animation (scroll-triggered, when 25% in viewport):
+
+Section title: Fade in + slide up 15px
+Availability text: Fade in — 0.1s delay
+Contact links: Stagger fade-in (100ms delay per link)
+Each slides up 10px as it fades in
+Hover Interactions:
+
+Contact links (email, LinkedIn, GitHub):
+Icon + text shift together: translateX(0 → 4px)
+Color: text-secondary → accent-primary
+Icon may have slight scale (1.0 → 1.1)
+Transition: 0.15s ease
+Copy email button (if present):
+Background: bg-tertiary → bg-secondary
+Border: border-subtle → accent-primary
+Feedback text appears: "Copied!" (fade in/out, 2s total)
+Scroll Behavior:
+
+Static after entry
+Micro-interactions:
+Priority Rule:
+Email interaction feedback must be stronger than social links.
+Email is the primary conversion path and should visually dominate.
+
+
+
+Availability badge (if repeated here) pulses if "Available"
+Email link click: Brief success state (checkmark icon appears for 1s)
+9. FOOTER
+Entry Animation:
+
+Fades in when bottom 10% of page is visible
+No slide — just opacity (0 → 1, 0.4s)
+Hover Interactions:
+
+Social links:
+Icon color: text-tertiary → text-primary
+Small upward lift: translateY(0 → -2px)
+Transition: 0.15s ease
+"Back to Top" link (if present):
+Arrow icon translates up 4px
+Color shift: text-tertiary → accent-primary
+Scroll Behavior:
+
+Static
+Micro-interactions:
+
+"Back to Top" triggers smooth scroll (0.8s ease-in-out curve)
+Global Scroll Behavior
+Smooth Scroll:
+
+All anchor links (nav, CTAs, "Back to Top") use smooth scroll with easing
+Duration: 0.8–1.2s depending on distance
+Use scroll-behavior: smooth or Framer Motion's scrollTo
+Scroll Progress Indicator (Optional):
+
+Thin line at top of viewport showing read progress (0–100%)
+Color: accent-primary
+Height: 2px
+Fades in after user scrolls past hero (100px)
+Only implement if it feels purposeful — not required for MVP
+Parallax Rule:
+
+Avoid entirely — violates performance and accessibility principles
+If absolutely necessary for hero background, limit to -20px max travel distance
+Animation Performance Checklist
+✓ All animations use transform and opacity only
+✓ No layout-triggering properties (width, height, top, left)
+✓ Prefer will-change hint for elements that will animate
+✓ Reduce motion if user has prefers-reduced-motion enabled
+✓ Test on 60Hz and 120Hz displays for smoothness
+✓ No animations block page rendering (lazy load animation library)
+
+Accessibility Considerations
+Global Motion Kill Switch:
+If prefers-reduced-motion is enabled:
+- Disable all entry and scroll-triggered animations
+- Keep hover and focus feedback only
+- Preserve timing and layout without motion
+
+Respect prefers-reduced-motion:
+
+
+If enabled, disable all entry animations
+Keep only essential feedback (hover states, focus rings)
+Maintain layout shift behavior without motion
+Focus States:
+
+All interactive elements must have visible focus rings
+Color: accent-primary with 2px offset
+Never remove :focus-visible styles
+Keyboard Navigation:
+
+Hover states should also apply on :focus
+Expandable content (project cards) must be keyboard-accessible
+Tab order must be logical top-to-bottom
+Timing Reference
+Element Type	Duration	Easing
+Fade in	0.3–0.4s	ease-out
+Slide up	0.3–0.5s	ease-out
+Hover lift	0.2–0.25s	ease-out
+Button hover	0.15–0.2s	ease
+Expand/collapse	0.3s	ease-in-out
+Smooth scroll	0.8–1.2s	ease-in-out
+Stagger Delays:
+
+Small elements (tags): 50–80ms
+Medium elements (cards): 100–150ms
+Sections: 200–300ms
+Motion Design Summary
+What Makes This Approach Successful:
+
+Purposeful — Every animation serves feedback, hierarchy, or delight
+Performant — CSS transforms only, respects reduced motion
+Consistent — Reusable timing and easing across all sections
+Subtle — Reinforces content, never competes with it
+Accessible — Keyboard and screen-reader friendly
+What to Avoid:
+
+❌ Page transitions or route animations (unnecessary complexity)
+❌ Auto-playing anything (violates accessibility)
+❌ Scroll-jacking or parallax overuse
+❌ Animations that delay content visibility
+❌ Decorative motion without purpose
+
+
+PHASE 5 — FUNCTIONALITY & FEATURES
+Feature Philosophy
+Feature Freeze Rule:
+Only P0 and P1 features are allowed in the MVP.
+P2 and P3 features must not be implemented until after launch and review.
+
+Principle: Every feature must solve a real user need. Avoid feature bloat that creates maintenance burden.
+
+Priority Levels:
+
+P0 (Must Have): Core navigation, contact methods, content display
+P1 (Should Have): Smooth scrolling, resume download, GitHub integration
+P2 (Nice to Have): Dark/light toggle, command palette, analytics
+P3 (Future): Contact form, newsletter, blog integration
+1. DARK/LIGHT MODE TOGGLE
+Behavior
+Default State:
+
+Dark mode by default (aligns with design system)
+Respects user's system preference on first visit via prefers-color-scheme
+Persists user's manual choice across sessions (localStorage)
+Toggle Mechanism:
+
+Icon button in top-right corner (sun/moon icon)
+Keyboard shortcut: Cmd/Ctrl + Shift + L
+Click toggles between dark ↔ light
+Visual feedback: Icon rotates 180° during transition
+Transition Behavior:
+
+All color tokens transition smoothly (0.2s ease)
+Background, text, borders, accents all change simultaneously
+No flash of wrong theme on page load
+Images/logos adapt if necessary (e.g., logo color inversion)
+State Persistence:
+
+Choice saved to localStorage as theme: 'dark' | 'light'
+On subsequent visits, override system preference with saved choice
+Clear button to "Reset to System Preference" (optional, P2)
+Accessibility:
+
+Toggle button has aria-label="Toggle dark/light mode"
+Current state announced to screen readers
+Focus state clearly visible
+Implementation Priority: P2 (Nice to Have)
+MVP Constraint:
+Light mode is explicitly excluded from MVP.
+Dark mode only is acceptable for initial launch.
+
+
+Light mode is optional for MVP
+Can be added post-launch without disrupting design
+Dark mode alone is acceptable for initial version
+2. SMOOTH SCROLLING
+Behavior
+Anchor Links:
+
+All in-page navigation (nav menu, CTAs, "Back to Top") triggers smooth scroll
+Duration: 0.8–1.2s depending on distance traveled
+Easing: ease-in-out curve for natural deceleration
+URL updates with hash (#section-id) without page jump
+Scroll Offset:
+
+When scrolling to a section, offset by 80px from top
+Prevents content from being hidden behind sticky header (if present)
+Ensures section title is fully visible
+User Override:
+
+Respects prefers-reduced-motion — instant scroll if enabled
+Manual scroll (mouse wheel, trackpad) behaves normally
+Only programmatic scrolls (link clicks) are smoothed
+Edge Cases:
+Failure-Safe:
+If smooth scrolling fails for any reason, default browser scrolling must work without breaking navigation.
+
+
+If section ID doesn't exist, scroll to top gracefully
+Multiple rapid clicks queue smoothly without jank
+Browser back/forward buttons maintain smooth behavior
+Implementation Priority: P1 (Should Have)
+Bundle Guardrail:
+Command palette code must be lazy-loaded and excluded from the initial JavaScript bundle.
+
+3. COMMAND PALETTE (Cmd + K)
+Behavior
+Trigger:
+
+Keyboard shortcut: Cmd + K (Mac) or Ctrl + K (Windows/Linux)
+Alternative: Click search icon in header (if present)
+Opens modal overlay with input field
+Functionality:
+
+Search: Filter all sections, projects, skills by keyword
+Quick Actions:
+"Download Resume"
+"Copy Email"
+"View GitHub Profile"
+"Toggle Dark Mode"
+Jump to any section (Projects, Contact, etc.)
+User Experience:
+
+Modal appears with fade-in (0.2s)
+Input field auto-focused on open
+Type to filter results in real-time
+Arrow keys navigate results
+Enter executes selected action
+Esc closes palette
+Visual Behavior:
+
+Darkened backdrop (overlay with 60% opacity)
+Centered modal (max-width: 600px)
+Results grouped by type (Sections, Projects, Actions)
+Keyboard shortcuts shown alongside actions (e.g., "↵ to select")
+Search Logic:
+
+Fuzzy matching on project names, descriptions, tech stack
+Section titles and keywords
+Highlights matched text in results
+No external API calls — all local data
+Accessibility:
+
+Modal traps focus (can't tab outside)
+aria-modal="true" and role="dialog"
+Clear "Close" button for non-keyboard users
+Screen reader announces results count
+Implementation Priority: P2 (Nice to Have)
+
+Impressive feature but not critical for MVP
+Adds "product polish" for tech-savvy recruiters
+Requires additional bundle size (~5KB for library like cmdk)
+4. RESUME DOWNLOAD
+Behavior
+Trigger Points:
+
+Primary CTA in hero section ("Download Resume")
+Secondary link in footer
+Command palette action
+Contact section link
+File Handling:
+
+PDF file hosted locally (/public/resume.pdf) or on CDN
+File opens in new tab (allows preview before download)
+Filename: FirstName_LastName_Resume.pdf (for recruiter file management)
+File size: <500KB for fast download
+Click Behavior:
+
+Click triggers immediate download or opens in new tab
+User's browser preferences determine behavior
+No interstitial page or redirect
+Analytics (Optional):
+
+Track download clicks (Google Analytics event)
+No personally identifiable information collected
+Event: resume_download with timestamp
+Version Control:
+Source of Truth:
+Resume file location and filename must be defined in a single configuration constant to avoid broken links.
+
+
+Resume should be version-dated in filename or footer (e.g., "Updated Feb 2026")
+Easy to swap out PDF without breaking links
+Consider hosting on GitHub releases for version history
+Accessibility:
+
+Link text clearly states "Download Resume (PDF)"
+File size mentioned for users on slow connections (optional)
+download attribute forces download vs. preview
+Implementation Priority: P0 (Must Have)
+
+5. CONTACT FORM BEHAVIOR
+Behavior
+Form Location:
+
+Optional feature in Contact section
+Alternative to direct email link
+Useful if you want to filter spam or collect structured data
+Form Fields:
+
+Name (required, text input)
+Email (required, email input with validation)
+Subject (optional, text input or dropdown)
+Message (required, textarea, max 1000 characters)
+Honeypot field (hidden, spam prevention)
+Validation:
+
+Client-side validation on blur and submit
+Email format check (regex)
+Required fields highlighted if empty
+Character count shown for message field
+Error messages appear inline below each field
+Submission Behavior:
+
+Submit button disabled during send (prevents double-submit)
+Loading spinner replaces button text ("Sending...")
+On success:
+Form fields clear
+Success message appears: "Thanks! I'll get back to you soon."
+Auto-hide after 5 seconds
+On error:
+Error message appears: "Something went wrong. Please try emailing directly."
+Fields remain populated so user can retry
+Falls back to direct email link
+Backend Options:
+
+Formspree (easiest, free tier, no backend needed)
+EmailJS (client-side only, sends via SMTP)
+Netlify Forms (if hosted on Netlify)
+Custom API (if you have backend infrastructure)
+Spam Prevention:
+
+Honeypot field (invisible, bots fill it out)
+Rate limiting (max 3 submissions per hour per IP)
+reCAPTCHA (only if spam becomes an issue — avoid for UX reasons)
+Accessibility:
+
+All fields have <label> elements
+Error messages linked via aria-describedby
+Submit button has loading state announced to screen readers
+Form validation errors announced
+Implementation Priority: P3 (Future)
+MVP Exclusion:
+Contact form must not be implemented in MVP.
+Direct email is the only supported contact method initially.
+
+
+Not required for MVP — direct email link is sufficient
+Adds backend dependency and maintenance
+Only implement if spam on direct email becomes issue
+6. GITHUB INTEGRATION
+Behavior
+Data to Display:
+
+Profile Stats:
+Total public repositories
+Total stars across all repos
+Total contributions (last year)
+Featured Repositories (3–4 repos):
+Repo name
+Description
+Primary language
+Star count
+Fork count
+Link to repo
+Data Source:
+
+GitHub REST API (public, no auth required for public profiles)
+Endpoints:
+GET /users/{username} — Profile data
+GET /users/{username}/repos?sort=stars&per_page=4 — Featured repos
+API rate limit: 60 requests/hour (unauthenticated)
+Fetching Strategy:
+Rate Limit Safety:
+If GitHub API rate limit is exceeded, immediately fall back to static cached data without retries.
+
+
+Client-side fetch on component mount (for fresh data)
+Fallback to static data if API fails (cached JSON in codebase)
+Loading state: Skeleton UI shows during fetch (0.5–2s)
+Error state: Falls back to static data, no error shown to user
+Caching:
+
+Cache API response in sessionStorage for 1 hour
+Subsequent page visits within session use cached data
+Reduces API calls and improves performance
+Update Frequency:
+
+Data refreshes on each new browser session
+No real-time updates (not needed for portfolio context)
+Manual refresh button (optional, P2) to force re-fetch
+Displayed Repositories:
+
+Option 1: Most starred repos (automatic)
+Option 2: Manual curation (hardcoded repo list, fetches details)
+Recommended: Manual curation — ensures only quality projects shown
+Link Behavior:
+
+All repo links open in new tab (target="_blank" rel="noopener")
+"View All on GitHub" links to full profile
+Accessibility:
+
+Loading skeleton has aria-busy="true"
+Error state provides fallback content, not just empty space
+Links clearly labeled (repo name + stars visible to screen readers)
+Implementation Priority: P1 (Should Have)
+
+Adds credibility and social proof
+Low implementation cost (simple API fetch)
+Graceful degradation if API fails
+7. NAVIGATION BEHAVIOR
+Sticky Header (Optional)
+Navigation Guarantee:
+All navigation links must remain functional even if JavaScript is disabled (basic anchor behavior).
+
+Behavior:
+
+Header starts transparent at top of page
+Becomes opaque with background (bg-primary) after scrolling 100px
+Smooth fade-in transition (0.2s)
+Remains sticky (position: sticky; top: 0;)
+Always accessible for quick navigation
+Navigation Links:
+
+Links to each major section (Projects, Experience, Contact)
+Active section highlighted based on scroll position
+Click triggers smooth scroll to section
+Mobile: Collapses into hamburger menu (<768px)
+Implementation Priority: P2 (Nice to Have)
+
+Portfolio is single-page, scroll distance is manageable without sticky nav
+"Back to Top" in footer is sufficient for MVP
+8. ANALYTICS & TRACKING
+Behavior
+What to Track:
+
+Page views
+Resume download clicks
+External link clicks (GitHub, LinkedIn, project demos)
+Contact method clicks (email, social links)
+Time on page (engagement metric)
+Tools:
+
+Google Analytics 4 (industry standard, free)
+Plausible (privacy-focused, lightweight alternative)
+Fathom (paid, privacy-first, no cookies)
+Privacy:
+Respect Opt-Out:
+Analytics must respect Do Not Track (DNT) and browser privacy signals.
+
+
+Cookie consent banner not required if using privacy-first tools
+No personally identifiable information collected
+Respect "Do Not Track" browser settings
+Mention analytics in privacy policy (if present)
+Implementation Priority: P1 (Should Have)
+
+Useful for understanding recruiter behavior
+Helps optimize CTAs and content placement
+Minimal setup cost
+9. PERFORMANCE FEATURES
+Performance Budget:
+Initial JavaScript bundle must remain under 150KB gzipped.
+Images must not exceed 200KB per asset.
+
+Lazy Loading
+Behavior:
+
+Images below fold load only when scrolled into viewport
+Project thumbnails, GitHub profile images lazy-loaded
+Native loading="lazy" attribute (no library needed)
+Skeleton placeholders during load
+Code Splitting
+Behavior:
+
+Animation library (Framer Motion) loaded only when needed
+Command palette code split (loads on first Cmd+K trigger)
+Reduces initial bundle size by ~30%
+Prefetching
+Behavior:
+
+Resume PDF prefetched on hover over download button
+External links prefetched on hover (<link rel="prefetch">)
+Improves perceived performance
+Implementation Priority: P1 (Should Have)
+
+Performance directly impacts user experience
+Affects recruiter perception (slow = unprofessional)
+10. SEO & METADATA FEATURES
+SEO Fallback:
+Core content (name, title, projects) must be indexable without JavaScript execution.
+
+Behavior
+Meta Tags:
+
+Open Graph tags for social sharing (LinkedIn, Twitter)
+Structured data (JSON-LD) for Google rich results
+Canonical URL to prevent duplicate content issues
+Dynamic Metadata:
+
+Page title: "Your Name — Full-Stack Software Developer"
+Meta description: ~155 characters summarizing expertise
+og:image pointing to professional headshot or portfolio preview
+Sitemap & robots.txt:
+
+Single-page app, minimal sitemap
+Allow all crawlers (User-agent: *)
+Implementation Priority: P1 (Should Have)
+
+Critical for discoverability via search engines
+Improves LinkedIn/Twitter share previews
+Feature Implementation Summary
+Feature	Priority	Complexity	Impact
+Resume Download	P0	Low	High
+Smooth Scrolling	P1	Low	Medium
+GitHub Integration	P1	Medium	High
+Analytics	P1	Low	Medium
+Performance (Lazy Load)	P1	Low	High
+SEO Metadata	P1	Low	High
+Dark/Light Toggle	P2	Medium	Low
+Command Palette	P2	High	Medium
+Contact Form	P3	High	Low
+MVP Feature Set (P0 + P1):
+
+Resume download
+Smooth scrolling
+GitHub integration
+Analytics
+Performance optimizations
+SEO metadata
+Post-Launch (P2):
+
+Dark/light mode toggle
+Command palette
+Future Enhancements (P3):
+
+Contact form
+Newsletter signup
+Blog integration
+
+IMPLEMENTATION OUTPUT CONTRACT
+
+Code generation must:
+- Match the folder structure defined in Phase 6 exactly
+- Use only the libraries explicitly approved
+- Respect performance budgets without exception
+- Implement only P0 and P1 features for MVP
+- Avoid abstraction layers not defined in this spec
+
+Do not:
+- Introduce state management libraries
+- Add UI frameworks
+- Add animation patterns not defined in Phase 4
+- Add backend or server dependencies
+
+PHASE 6 — TECH IMPLEMENTATION PLAN
+Implementation Lock:
+Framework, styling, animation, and deployment choices defined in this phase are final.
+No rewrites or tooling swaps are allowed during MVP development.
+
+Framework Selection
+Recommended: Next.js 14+ (App Router)
+Rationale:
+
+✅ SEO-first: Server-side rendering + static export ensures content is crawlable
+✅ Performance: Built-in image optimization, code splitting, prefetching
+✅ Developer experience: Hot reload, TypeScript support, file-based routing
+✅ Production-ready: Used by Vercel, Linear, and other design inspirations
+✅ Static export: Can generate pure static HTML/CSS/JS (no server required)
+✅ Future-proof: Supports SSR if you later add dynamic features (blog, CMS)
+Alternative: Vite + React
+
+✅ Lighter weight, faster dev server
+✅ No framework lock-in
+❌ Manual SEO setup (react-helmet, react-snap for pre-rendering)
+❌ More configuration required for production optimizations
+Use if: You want minimal tooling and control, or have strong Next.js aversion
+Why Not:
+
+❌ Vanilla HTML/CSS/JS — Hard to manage state, animations, GitHub API integration
+❌ Gatsby — Overkill for single-page portfolio, slower builds
+❌ Astro — Great for content sites, but React ecosystem is richer for interactive features
+Final Choice: Next.js (static export mode)
+Static-First Constraint:
+All pages and sections must be statically renderable.
+No runtime server dependencies are allowed in MVP.
+
+
+Styling Approach
+Recommended: Vanilla CSS with CSS Custom Properties
+Structure:
+
+styles/
+├── globals.css          # Reset, tokens, base styles
+├── variables.css        # Color tokens, spacing scale
+└── [component].module.css  # Component-specific styles
+Rationale:
+
+✅ No build overhead: Pure CSS, no preprocessor
+✅ CSS Custom Properties: Native theming support (for future light mode)
+✅ Scoped styles: CSS Modules prevent naming collisions
+✅ Full control: No framework abstractions or utility class bloat
+✅ Performance: No runtime CSS-in-JS cost
+CSS Custom Properties (Variables):
+
+css
+/* Example structure, not actual code */
+:root {
+  --bg-primary: #0a0a0a;
+  --text-primary: #e4e4e7;
+  --accent-primary: #3b82f6;
+  --spacing-small: 1rem;
+  /* etc. */
+}
+Alternative: Tailwind CSS
+
+⚠️ Only if user explicitly requests it
+Adds ~50KB to bundle (violates our 150KB budget unless heavily purged)
+Utility-first approach conflicts with our "content is king" philosophy
+Not recommended unless user has strong preference
+Why Not:
+
+❌ Styled-components / Emotion — Runtime overhead, flash of unstyled content
+❌ SASS/LESS — Unnecessary for this scope, adds build complexity
+Final Choice: Vanilla CSS + CSS Modules
+CSS Ownership Rule:
+All visual styling must live in CSS files.
+No inline styles or style props except for dynamic CSS variables (theme toggles).
+
+
+Animation Libraries
+Recommended: Framer Motion
+Rationale:
+
+✅ React-native: Declarative API, component-based
+✅ Layout animations: Handles expanding project cards gracefully
+✅ Viewport detection: Built-in whileInView for scroll-triggered animations
+✅ Gesture support: Drag, hover, tap (future-proof)
+✅ Performance: GPU-accelerated, optimized transforms
+✅ Accessibility: Respects prefers-reduced-motion out of the box
+Bundle Size: ~35KB gzipped (within budget)
+
+Lazy Loading Strategy:
+
+Core animations (hero, fade-ins) use Framer Motion
+Import only needed hooks (useAnimation, motion components)
+Tree-shaking removes unused features
+Fallback for Simple Animations:
+
+Pure CSS transitions for hover states (buttons, links)
+No library needed for static effects
+Why Not GSAP:
+
+❌ Overkill for this use case (timeline complexity not needed)
+❌ Larger bundle (~45KB) for features we won't use
+❌ Imperative API less ergonomic in React
+Final Choice: Framer Motion + CSS transitions
+
+Motion Budget:
+Framer Motion usage must be limited to sections explicitly defined in Phase 4.
+No new motion patterns may be introduced during implementation.
+
+Folder Structure (High-Level)
+Project Organization
+portfolio/
+│
+├── public/                    # Static assets
+│   ├── resume.pdf            # Resume file (version-controlled)
+│   ├── images/               # Project thumbnails, profile photo
+│   └── favicon/              # Favicon variants
+│
+├── src/
+│   ├── app/                  # Next.js App Router (or pages/ for Pages Router)
+│   │   ├── layout.tsx        # Root layout, metadata, fonts
+│   │   ├── page.tsx          # Main portfolio page
+│   │   └── globals.css       # Global styles, CSS resets
+│   │
+│   ├── components/           # React components
+│   │   ├── Hero/
+│   │   │   ├── Hero.tsx
+│   │   │   └── Hero.module.css
+│   │   ├── TechStack/
+│   │   ├── Projects/
+│   │   │   ├── ProjectCard.tsx
+│   │   │   └── Projects.tsx
+│   │   ├── Experience/
+│   │   ├── About/
+│   │   ├── Contact/
+│   │   ├── Footer/
+│   │   └── shared/           # Reusable components
+│   │       ├── Button/
+│   │       ├── Tag/
+│   │       └── SectionTitle/
+│   │
+│   ├── lib/                  # Utilities and helpers
+│   │   ├── github.ts         # GitHub API integration
+│   │   ├── analytics.ts      # Analytics wrapper
+│   │   └── constants.ts      # Config (resume path, links, etc.)
+│   │
+│   ├── data/                 # Static data
+│   │   ├── projects.json     # Project details
+│   │   ├── experience.json   # Work history
+│   │   ├── skills.json       # Tech stack
+│   │   └── github-fallback.json  # Cached GitHub data
+│   │
+│   ├── styles/               # Global CSS
+│   │   ├── variables.css     # CSS Custom Properties
+│   │   └── animations.css    # Reusable keyframes
+│   │
+│   └── types/                # TypeScript definitions
+│       └── index.ts          # Shared types (Project, Experience, etc.)
+│
+├── .env.local                # Environment variables (analytics keys, etc.)
+├── next.config.js            # Next.js configuration
+├── package.json
+├── tsconfig.json
+└── README.md
+Key Principles:
+Boundary Rule:
+Components must not import from each other’s internal folders.
+Shared logic lives only in /shared or /lib.
+
+
+Component co-location: Each component has its own folder with styles
+Data separation: JSON files for content, easy to update without touching code
+Single source of truth: lib/constants.ts for resume path, social links, etc.
+Type safety: TypeScript for all components and data structures
+State Management
+Recommended: React Context (minimal) + Local State
+Rationale:
+
+Portfolio is mostly static presentation
+No complex global state (no cart, auth, etc.)
+GitHub data fetched once and cached in sessionStorage
+State Needs:
+
+GitHub data: Fetch in component, cache in sessionStorage
+Scroll position: Local state for "Back to Top" visibility
+Future (P2): Theme toggle (dark/light) would use Context
+Why Not Redux/Zustand:
+
+❌ Overkill for this scope
+❌ Adds bundle weight and complexity
+Final Choice: React hooks (useState, useEffect) + sessionStorage
+State Non-Goals:
+No global state library (Redux, Zustand, Jotai) may be added in MVP.
+
+
+TypeScript Configuration
+Recommended: Strict TypeScript
+Rationale:
+
+Catches errors at compile time
+Self-documents data structures (Project, Experience types)
+Industry standard for professional portfolios
+Demonstrates technical rigor to recruiters
+Type Definitions:
+
+typescript
+// Example, not actual code
+interface Project {
+  id: string;
+  name: string;
+  description: string;
+  problem: string;
+  solution: string;
+  techStack: string[];
+  metrics?: string[];
+  links: {
+    demo?: string;
+    code?: string;
+  };
+}
+
+Final Choice: TypeScript (strict mode)
+Data Integrity Rule:
+All JSON data files must conform to TypeScript interfaces.
+Invalid data must fail the build.
+
+
+Build & Optimization Strategy
+Build Output Target
+Static Export (Next.js):
+
+next build && next export generates pure HTML/CSS/JS
+No server required (can host on CDN)
+Pre-rendered at build time for instant load
+Optimizations:
+Build Failure Rule:
+Build must fail if bundle size exceeds defined performance budgets.
+
+Image Optimization:
+Use Next.js <Image> component (WebP conversion, responsive)
+Lazy load below-fold images
+Serve from CDN for faster delivery
+Code Splitting:
+Automatic route-based splitting (Next.js default)
+Dynamic import for Framer Motion (loads on interaction)
+Separate chunks for each section (lazy load on scroll)
+Bundle Analysis:
+Use @next/bundle-analyzer to monitor size
+Ensure total JS < 150KB gzipped (P1 constraint)
+Tree-shake unused code
+Font Optimization:
+Use next/font to optimize Inter and JetBrains Mono
+Self-host fonts (no external requests to Google Fonts)
+Subset fonts to include only used characters
+Deployment Strategy
+Rollback Safety:
+Production deploys must be reversible using previous Vercel deployments.
+Never hot-fix directly on production.
+
+Recommended: Vercel (Primary)
+Rationale:
+
+✅ Zero-config: Push to GitHub, auto-deploys
+✅ Performance: Global CDN, edge caching, automatic compression
+✅ Analytics: Built-in Web Vitals monitoring (optional)
+✅ Free tier: Generous limits for personal portfolios
+✅ Custom domain: Easy DNS setup
+✅ Preview deployments: Every PR gets a staging URL
+Deployment Flow:
+
+Push to main branch → Production deploy
+Push to feature branch → Preview URL generated
+Automatic HTTPS, cache invalidation, rollbacks
+Alternative: Netlify
+
+Similar feature set to Vercel
+Form handling (useful if you add contact form in P3)
+Split testing (A/B testing for CTAs)
+Use if: You prefer Netlify's ecosystem or need form backend
+Alternative: GitHub Pages
+
+✅ Free, simple for static sites
+❌ No automatic build (requires GitHub Actions setup)
+❌ No preview deployments
+❌ Slower CDN than Vercel/Netlify
+Use if: Budget is zero and you want simplest setup
+Alternative: Cloudflare Pages
+
+✅ Fast global CDN
+✅ Free tier, unlimited bandwidth
+❌ Less Next.js-specific optimizations than Vercel
+Use if: You already use Cloudflare for DNS
+Final Choice: Vercel (best Next.js integration)
+
+Domain & DNS
+Recommended Setup
+Domain:
+
+Custom domain (e.g., yourname.dev, yourname.com)
+.dev or .io signals technical credibility
+Purchase via Namecheap, Google Domains, or Cloudflare
+DNS Configuration:
+
+Point domain to Vercel via A/CNAME records
+Enable HTTPS (automatic via Vercel)
+Set up www redirect to root domain
+Optional: Email
+
+Set up professional email (hi@yourname.dev)
+Use Google Workspace, ProtonMail, or Cloudflare Email Routing
+Environment Variables
+Configuration Management
+Environment Variables (.env.local):
+
+# Example, not actual code
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX          # Google Analytics
+GITHUB_USERNAME=yourusername             # For GitHub API
+NEXT_PUBLIC_EMAIL=your@email.com         # Contact email
+RESUME_FILE_PATH=/resume.pdf             # Resume location
+Usage:
+
+NEXT_PUBLIC_* variables are exposed to browser (client-side)
+Non-prefixed variables are server-only (not needed for static export)
+Store secrets in Vercel dashboard for production
+Security:
+Env Safety Rule:
+Only variables prefixed with NEXT_PUBLIC_ may be accessed in client-side code.
+
+
+No API keys needed for MVP (GitHub API is public, unauthenticated)
+Analytics keys are public by nature (safe to expose)
+Version Control Strategy
+Git Workflow
+Branching:
+
+main — Production-ready code, auto-deploys to vercel.app
+dev — Development branch (optional, for testing before merge)
+Feature branches (feature/hero-section, fix/github-api)
+Commit Strategy:
+
+Atomic commits (one feature per commit)
+Conventional commits (optional): feat:, fix:, style:, docs:
+Meaningful commit messages for portfolio showcase
+Repository Setup:
+
+Public repo on GitHub (shows code quality to recruiters)
+Comprehensive README (project overview, tech stack, setup instructions)
+MIT or equivalent license
+Testing Strategy (Minimal for MVP)
+Quality Assurance
+Manual Testing:
+
+Browser testing (Chrome, Firefox, Safari)
+Device testing (desktop, tablet, mobile)
+Accessibility audit (Lighthouse, axe DevTools)
+Performance audit (Lighthouse, WebPageTest)
+Automated Testing (Optional, P3):
+
+E2E tests (Playwright) for critical paths (resume download, contact links)
+Unit tests (Vitest) for GitHub API integration
+Not required for MVP — manual QA sufficient
+Pre-deployment Checklist:
+
+ All links work (resume, social, projects)
+ Images load and lazy-load properly
+ Animations respect prefers-reduced-motion
+ SEO meta tags populate correctly
+ Analytics tracking fires on key events
+ Performance score >90 on Lighthouse
+ Accessibility score 100 on Lighthouse
+ Release Gate:
+Portfolio may not be considered "live" unless all checklist items pass.
+No exceptions.
+
+Analytics & Monitoring
+Observability
+Tools:
+
+Google Analytics 4: Page views, events, user flow
+Vercel Analytics (optional): Web Vitals, real user metrics
+Sentry (optional, P3): Error tracking (overkill for static site)
+Events to Track:
+
+page_view — Initial load
+resume_download — Resume CTA clicked
+external_link_click — GitHub, LinkedIn, project demos
+contact_method_click — Email, social links
+scroll_depth — How far users scroll (engagement)
+Privacy Compliance:
+
+Respect DNT header
+No PII collected
+Mention analytics in footer (optional privacy policy link)
+Content Management
+Data Update Workflow
+JSON Data Files:
+
+Update data/projects.json to add new projects
+Update data/experience.json for job changes
+Update data/skills.json to add new tech stack
+Commit, push, auto-deploys to production
+Resume Updates:
+
+Replace public/resume.pdf with new version
+Update filename with version date (e.g., resume-feb-2026.pdf)
+Update constant in lib/constants.ts
+Commit, push, deploy
+Future (P3): Headless CMS
+
+Sanity, Contentful, or Strapi for non-technical content updates
+Overkill for MVP — JSON files are sufficient
+Only consider if you plan to add blog or frequent updates
+Implementation Phases
+MVP Development Timeline (4-6 weeks, part-time)
+Timeline Flexibility:
+Timeline is a guideline, not a deadline.
+Quality and correctness take priority over speed.
+
+Week 1-2: Foundation
+
+Set up Next.js project
+Configure TypeScript, linting, formatting
+Create global styles (tokens, reset, typography)
+Build Hero section (static, no animations)
+Week 3-4: Core Sections
+
+Technical Expertise section
+Projects section (with static data)
+Experience section
+About section
+Contact section
+Footer
+Week 5: Interactivity
+
+Add Framer Motion animations
+Implement smooth scrolling
+GitHub API integration
+Resume download functionality
+Week 6: Polish & Deploy
+
+Performance optimization
+SEO metadata
+Analytics integration
+Testing & QA
+Deploy to Vercel
+Custom domain setup
+Post-Launch (P2 Features):
+
+Dark/light mode toggle (+1 week)
+Command palette (+1 week)
+Tech Stack Summary
+Category	Choice	Rationale
+Framework	Next.js 14 (App Router)	SEO, performance, static export
+Language	TypeScript (strict)	Type safety, self-documentation
+Styling	Vanilla CSS + CSS Modules	Full control, no runtime overhead
+Animations	Framer Motion + CSS	Declarative, performant, accessible
+State	React hooks + sessionStorage	Minimal complexity, sufficient for MVP
+API	GitHub REST API	Public data, no auth required
+Analytics	Google Analytics 4	Industry standard, free
+Deployment	Vercel	Zero-config, CDN, preview deploys
+Domain	Custom (.dev or .com)	Professional, memorable
+Version Control	Git + GitHub	Public repo, code showcase
+Success Metrics
+Technical KPIs:
+
+Lighthouse Performance Score: >95
+Lighthouse Accessibility Score: 100
+Lighthouse SEO Score: 100
+First Contentful Paint (FCP): <1.2s
+Time to Interactive (TTI): <2.5s
+Total Bundle Size: <150KB gzipped
+User KPIs (from Analytics):
+
+Resume download rate: >20% of visitors
+Avg. time on page: >2 minutes
+Bounce rate: <50%
+External link clicks: >30% (GitHub, projects)
+Risk Mitigation
+Common Pitfalls & Solutions:
+
+GitHub API Rate Limiting:
+✅ Fallback to static cached data
+✅ sessionStorage caching reduces requests
+Animation Performance on Mobile:
+✅ Test on real devices, not just emulators
+✅ Reduce motion complexity for mobile (simpler transforms)
+Resume File Not Loading:
+✅ Single constant for file path (no hardcoded duplicates)
+✅ Test download on multiple browsers
+SEO Issues with Client-Side Rendering:
+✅ Static export ensures content is crawlable
+✅ Metadata in Next.js layout, not dynamic
+Bundle Size Bloat:
+✅ Regular bundle analysis
+✅ Dynamic imports for heavy features
+✅ Tree-shaking verification
+
+
+✅ PHASE 7 — FINAL CONTENT COPY
+
+(Software Developer Portfolio — Locked)
+
+🟦 HERO SECTION
+Name
+
+Chinmay Singh
+
+Title
+
+Full-Stack Software Developer
+
+Headline (H2)
+
+Building scalable backend systems and full-stack applications
+
+Value Proposition (Subheadline)
+
+Backend-heavy full-stack developer with expertise in REST APIs, database optimization, and cloud infrastructure. I build production-ready software that handles real users at scale.
+
+Availability Badge
+
+✓ Open to opportunities
+
+Primary CTA
+
+View My Work
+
+Secondary CTA
+
+Download Resume (PDF)
+
+🟦 ABOUT SECTION
+Heading
+
+About Me
+
+Body Copy
+
+I’m a software developer with a backend-first mindset, focused on building scalable and reliable web applications. I got into development by building projects and quickly realized I enjoyed solving the hard problems—database design, API architecture, performance optimization, and system reliability.
+
+I specialize in the MERN stack (MongoDB, Express, React, Node.js) and have hands-on experience with PostgreSQL, Redis, and AWS services such as EC2, S3, and Lambda. Most of my work involves designing REST APIs, optimizing database queries, and deploying applications that run in real production environments.
+
+I care deeply about writing clean, testable, and maintainable code. I prefer simple, well-structured solutions over unnecessary complexity and enjoy working on systems where performance and scalability actually matter.
+
+Currently based in India. Open to remote opportunities, full-time roles, and contract work.
+
+🟦 EDUCATION
+
+Bachelor of Technology (B.Tech) — Computer Science Engineering
+Bhagwan Parshuram Institute of Technology
+CGPA: 8.662 • Expected Graduation: 2026
+
+🟦 TECHNICAL EXPERTISE
+Backend
+
+Node.js · Express.js · REST APIs · JWT Authentication
+PostgreSQL · MongoDB · Redis · Firebase
+
+Cloud & DevOps
+
+AWS (EC2, S3, Lambda) · Docker · CI/CD · Nginx
+
+Frontend
+
+React · TypeScript · Next.js · HTML5 · CSS3
+Responsive Web Design
+
+Tools & Practices
+
+Git · GitHub · System Design · API Design
+Agile Development · Testing (Jest)
+
+🟦 FEATURED PROJECTS
+🔹 StreamZone — Video Sharing Platform
+
+Full-Stack MERN Application
+
+Problem
+Building a video platform requires reliable media handling, authentication, analytics, and scalable backend systems to support real users.
+
+Solution
+Designed and developed a full-stack video-sharing platform supporting video uploads, channel management, JWT-based authentication, comments, likes, and basic analytics.
+
+Technical Highlights
+
+JWT-based authentication and secure APIs
+
+Cloudinary + Multer for scalable video uploads
+
+MongoDB aggregation pipelines for analytics
+
+Optimized frontend state management for smoother UX
+
+Impact
+
+Improved frontend performance by ~40%
+
+Reliable handling of large media uploads
+
+Clean, modular backend architecture
+
+Tech Stack
+React · Node.js · Express · MongoDB · Cloudinary · JWT
+
+Links
+View Code → GitHub
+
+🔹 UniFind — College Predictor Platform
+
+Backend-Focused MERN Application
+
+Problem
+Students struggle to predict college admissions due to scattered cutoff data and complex admission criteria.
+
+Solution
+Built backend APIs to analyze historical cutoff data and predict college allocation based on rank, quota, and domicile.
+
+Technical Highlights
+
+Data-driven prediction logic
+
+Clean REST API design
+
+Backend ownership in a team of three developers
+
+Impact
+
+Simplified admission decision-making
+
+Backend designed for future dataset expansion
+
+Tech Stack
+Node.js · Express · MongoDB · React
+
+Links
+View Code → GitHub
+Live Demo → UniFind
+
+🟦 PROFESSIONAL EXPERIENCE
+Software Developer Intern
+
+Juspay
+Jul 2025 – Present
+
+Built a low-latency search system using PostgreSQL Full-Text Search and pg_trgm with GIN indexes, achieving sub-100ms query latency on 50,000+ records.
+
+Implemented a Retrieval-Augmented Generation (RAG) pipeline over structured knowledge bases for context-aware LLM responses.
+
+Designed flexible training module architecture supporting dynamic phases and dependencies.
+
+Built real-time streaming text rendering with queue-based buffering for ordered, flicker-free output.
+
+Technologies Used
+React · TypeScript · PostgreSQL · AWS · LLMs · RAG
+
+Software Developer Intern
+
+Inditech Health Solution
+Oct 2024 – Jul 2025
+
+Resolved production issues in live healthcare systems, ensuring high availability and minimal downtime.
+
+Implemented doctor profile workflows to manage patient records and reports.
+
+Integrated Redis caching to reduce API response time by ~60%.
+
+Managed deployments with minimal disruption.
+
+Technologies Used
+PHP · MySQL · AWS · Redis
+
+Backend Developer Intern
+
+GrowthSay
+Sep 2024 – Oct 2024
+
+Implemented secure authentication using Node.js, Express, and Firebase.
+
+Integrated CAPTCHA v3 to reduce bot activity by ~25%.
+
+Built backend controllers for efficient user data management.
+
+Technologies Used
+Node.js · Express · Firebase
+
+🟦 WORK WITH ME
+Heading
+
+Work With Me
+
+I’m available for freelance projects and consulting focused on:
+
+✓ Backend API development and optimization
+✓ Database architecture and performance tuning
+✓ AWS cloud infrastructure
+✓ Full-stack web application development
+
+CTA: Get In Touch
+
+🟦 OPEN SOURCE & GITHUB
+
+I actively maintain personal and academic projects on GitHub, focusing on backend systems, clean architecture, and production-ready patterns.
+
+You’ll find:
+
+Well-structured repositories
+
+Backend-heavy projects
+
+Real-world implementations, not demos
+
+View all projects on GitHub →
+
+🟦 CONTACT
+Heading
+
+Let’s Build Something
+
+I’m currently open to full-time roles and contract opportunities.
+
+EMAIL
+singhchinmay207@gmail.com
+
+LINKEDIN
+linkedin.com/in/chinmay-singh-4092b0253
+
+GITHUB
+github.com/Chinmay67
+
+🟦 FOOTER
+
+© 2026 Chinmay Singh • Software Developer
+Built with Next.js, TypeScript, and modern web technologies
+
+🧠 GENERAL COPY RULES (LOCKED)
+
+Use metrics whenever available
+
+Start bullets with action verbs
+
+Be specific about technologies
+
+Show impact, not responsibilities
+
+Avoid buzzwords and hype
+
+Keep sentences concise and scannable
+
+IMPLEMENTATION ORDER (MANDATORY)
+
+Code must be generated in this order:
+1. Project setup & configuration
+2. Global styles & tokens
+3. Layout shell
+4. Hero section
+5. Technical Expertise section
+6. Projects section
+7. Experience section
+8. About section
+9. Contact section
+10. Footer
+11. Animations (Phase 4 rules only)
+12. GitHub integration
+13. Performance optimizations
+14. SEO & metadata
+
+Do not skip ahead or bundle multiple sections together.
