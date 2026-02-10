@@ -1,0 +1,339 @@
+/**
+ * Navigation Styles - Radial Arc Menu
+ * Circular floating button that expands into semi-circular arc
+ */
+
+/* ============================================
+   NAVIGATION CONTAINER
+   ============================================ */
+
+.navContainer {
+    /* CSS Variables scoped to nav container */
+    --nav-z-index: 1000;
+    --trigger-size: 64px;
+    --item-size: 48px;
+    --arc-radius: 140px;
+    --duration-fast: 0.2s;
+    --duration-normal: 0.3s;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    position: fixed;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: var(--nav-z-index);
+
+    /* Container must be large enough to hold the arc items */
+    /* Arc items span along semi-circle to the right */
+    width: calc(var(--arc-radius) + var(--trigger-size) + var(--item-size));
+    height: calc(var(--arc-radius) * 2 + var(--item-size));
+
+    transition: all var(--duration-normal) var(--ease-out);
+}
+
+.navContainer.visible {
+    opacity: 1;
+    transform: translateY(-50%);
+    pointer-events: auto;
+}
+
+.navContainer.hidden {
+    opacity: 0;
+    transform: translateY(calc(-50% + 20px));
+    pointer-events: none;
+}
+
+/* ============================================
+   TRIGGER BUTTON
+   ============================================ */
+
+.triggerButton {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--trigger-size);
+    height: var(--trigger-size);
+    border-radius: 50%;
+    background: rgba(20, 20, 20, 0.9);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-normal) var(--ease-out);
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 30px rgba(59, 130, 246, 0.2);
+    z-index: 10;
+}
+
+.triggerButton::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    padding: 2px;
+    background: linear-gradient(135deg,
+            rgba(59, 130, 246, 0.4) 0%,
+            rgba(147, 51, 234, 0.2) 50%,
+            rgba(59, 130, 246, 0.4) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+    transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.triggerButton:hover {
+    transform: scale(1.05);
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 0 40px rgba(59, 130, 246, 0.4);
+}
+
+.triggerButton:hover::before {
+    opacity: 1;
+}
+
+.triggerButton.expanded {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 50px rgba(59, 130, 246, 0.5);
+}
+
+.menuIcon {
+    width: 28px;
+    height: 28px;
+    color: #fff;
+    transition: transform var(--duration-normal) var(--ease-out);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.triggerButton.expanded .menuIcon {
+    transform: rotate(90deg);
+}
+
+/* ============================================
+   ARC CONTAINER
+   ============================================ */
+
+.arcContainer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+.arcContainer.arcExpanded {
+    pointer-events: auto;
+}
+
+/* ============================================
+   NAVIGATION ITEMS
+   ============================================ */
+
+.navItem {
+    position: absolute;
+    left: calc(var(--trigger-size) / 2 - var(--item-size) / 2);
+    top: calc(50% - var(--item-size) / 2);
+    width: var(--item-size);
+    height: var(--item-size);
+    border-radius: 50%;
+    background: rgba(31, 31, 31, 0.9);
+    backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    transition: all var(--duration-normal) var(--ease-out);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+
+    /* Initial state - hidden at center */
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5);
+}
+
+.arcExpanded .navItem {
+    /* Expanded state - positioned on arc */
+    opacity: 1;
+    transform: translate(var(--x), var(--y)) scale(1);
+    transition-delay: var(--delay);
+}
+
+.navItem:hover {
+    transform: translate(var(--x), var(--y)) scale(1.15);
+    background: rgba(45, 45, 45, 0.95);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.navItem:hover .label {
+    opacity: 1;
+    transform: translateX(100%) translateY(-50%) scale(1);
+}
+
+.navItem.active {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow:
+        0 8px 30px rgba(59, 130, 246, 0.4),
+        0 0 0 1px rgba(59, 130, 246, 0.3),
+        inset 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+.navItem.active .iconWrapper::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+    animation: pulse 2s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* ============================================
+   ICON & LABEL
+   ============================================ */
+
+.iconWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.navItem:hover .icon {
+    transform: scale(1.1);
+}
+
+.label {
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateX(100%) translateY(-50%) scale(0.9);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--duration-normal) var(--ease-out);
+    z-index: 100;
+}
+
+.label::after {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-right: 6px solid rgba(20, 20, 20, 0.95);
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .navContainer {
+        --trigger-size: 56px;
+        --item-size: 44px;
+        --arc-radius: 120px;
+        left: 0.75rem;
+    }
+
+    .label {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.6rem;
+    }
+
+    .menuIcon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navContainer {
+        --trigger-size: 52px;
+        --item-size: 40px;
+        --arc-radius: 100px;
+        left: 0.5rem;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.navItem:focus-visible {
+    outline: 2px solid rgba(59, 130, 246, 0.8);
+    outline-offset: 2px;
+}
+
+.triggerButton:focus-visible {
+    outline: 2px solid rgba(59, 130, 246, 0.8);
+    outline-offset: 4px;
+}

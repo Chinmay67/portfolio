@@ -8,6 +8,23 @@
 .contact {
     padding-top: var(--spacing-4xl);
     padding-bottom: var(--spacing-4xl);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Recurring Motif: Soft Radial Glow (Right Anchor) */
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -150px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+    transform: translateY(-50%);
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* ============================================
@@ -52,7 +69,7 @@
 }
 
 /* ============================================
-   CONTACT METHODS - ENHANCED DEPTH
+   CONTACT METHODS - CIRCUIT BOARD STYLE
    ============================================ */
 
 .contactMethods {
@@ -67,40 +84,67 @@
     align-items: center;
     gap: var(--spacing-md);
     padding: var(--spacing-lg);
-    background: linear-gradient(135deg,
-            var(--bg-secondary) 0%,
-            rgba(24, 24, 27, 0.6) 100%);
-    border: 1px solid var(--border-subtle);
+    /* UNIFIED PREMIUM CARD STYLE */
+    background: rgba(15, 15, 20, 0.7);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    border-left: 3px solid var(--accent-primary);
     border-radius: var(--radius-md);
     text-decoration: none;
-    transition: all var(--duration-quick) var(--ease-out);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
-/* Left accent border */
+/* Circuit accent at bottom */
+.contactLink::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+    width: 40px;
+    height: 2px;
+    background: var(--accent-primary);
+    box-shadow: 0 0 8px var(--accent-primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+/* Inner glow - persistent volume */
 .contactLink::before {
     content: '';
     position: absolute;
-    left: 0;
     top: 0;
+    left: 0;
+    right: 0;
     bottom: 0;
-    width: 3px;
-    background: var(--accent-primary);
-    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
-    opacity: 0;
-    transition: opacity var(--duration-quick) var(--ease-out);
+    background: radial-gradient(circle at 10% 50%,
+            rgba(59, 130, 246, 0.08) 0%,
+            transparent 50%);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .contactLink:hover {
-    border-color: rgba(99, 102, 241, 0.4);
-    background: linear-gradient(135deg,
-            rgba(39, 39, 42, 1) 0%,
-            rgba(24, 24, 27, 0.8) 100%);
-    transform: translateX(4px);
+    border-color: rgba(59, 130, 246, 0.5);
+    transform: translateX(6px) translateY(-2px);
+    box-shadow:
+        0 20px 40px -10px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(59, 130, 246, 0.15);
+}
+
+.contactLink:hover::after {
+    transform: scaleX(1);
 }
 
 .contactLink:hover::before {
     opacity: 1;
+    background: radial-gradient(circle at 10% 50%,
+            rgba(59, 130, 246, 0.12) 0%,
+            transparent 60%);
 }
 
 .contactLink:focus-visible {

@@ -1,139 +1,336 @@
 /**
  * Technical Expertise Section Styles
- * Mobile-first, scannable layout
- * Tags use monospace font for technical credibility
+ * Premium card-based grid layout
+ * Cyber-industrial aesthetic with category cards
  * Uses design tokens from variables.css
  */
 
-.technicalExpertise {
-    padding-top: var(--spacing-4xl);
-    padding-bottom: var(--spacing-4xl);
+.expertise {
+    padding-top: var(--spacing-2xl);
+    padding-bottom: var(--spacing-2xl);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Recurring Motif: Soft Radial Glow (Left Anchor) */
+.expertise::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -150px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+    transform: translateY(-50%);
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* ============================================
-   SECTION HEADING
+   SECTION HEADER
    ============================================ */
 
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-4xl);
+}
+
 .heading {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: var(--weight-semibold);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: var(--weight-bold);
     line-height: var(--line-height-heading);
     letter-spacing: var(--letter-spacing-tight);
     color: var(--text-primary);
-    margin-bottom: var(--spacing-sm);
-    position: relative;
-}
-
-/* Subtle underline accent */
-.heading::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background-color: var(--accent-primary);
-    margin-top: var(--spacing-md);
-    border-radius: var(--radius-sm);
-}
-
-/* ============================================
-   CATEGORY CONTAINERS
-   ============================================ */
-
-.category {
-    margin-top: var(--spacing-2xl);
-}
-
-.category:first-of-type {
-    margin-top: var(--spacing-3xl);
-}
-
-/* ============================================
-   CATEGORY LABELS
-   ============================================ */
-
-.categoryLabel {
-    font-size: 0.875rem;
-    font-weight: var(--weight-semibold);
-    text-transform: uppercase;
-    letter-spacing: var(--letter-spacing-wide);
-    color: var(--text-tertiary);
     margin-bottom: var(--spacing-md);
 }
 
+.subheading {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
 /* ============================================
-   TAG GROUP
+   HEADER CONTENT \u0026 VIEW TOGGLE
    ============================================ */
 
-.tagGroup {
+.headerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xl);
+}
+
+.viewToggle {
+    display: flex;
+    gap: var(--spacing-xs);
+    background: rgba(20, 20, 25, 0.6);
+    padding: 4px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+}
+
+.toggleButton {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: var(--weight-medium);
+    cursor: pointer;
+    transition: all 0.2s var(--ease-out);
+}
+
+.toggleButton:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.toggleButton.active {
+    color: var(--text-primary);
+    background: var(--accent-primary);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+.toggleIcon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.toggleLabel {
+    font-family: var(--font-sans);
+}
+
+@media (min-width: 768px) {
+    .headerContent {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .headerContent>div:first-child {
+        flex: 1;
+    }
+
+    .subheading {
+        margin: 0;
+    }
+}
+
+
+/* ============================================
+   SKILLS GRID - 2x2 on Desktop
+   ============================================ */
+
+.skillsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+}
+
+@media (min-width: 640px) {
+    .skillsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-2xl);
+    }
+}
+
+@media (min-width: 1024px) {
+    .skillsGrid {
+        gap: var(--spacing-3xl);
+    }
+}
+
+/* ============================================
+   CATEGORY CARD - GLASSMORPHISM
+   ============================================ */
+
+.categoryCard {
+    position: relative;
+    background: rgba(20, 20, 25, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+}
+
+/* Left accent border using category color */
+.categoryCard::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--accent-color, var(--accent-primary));
+    border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+}
+
+/* Hover glow effect */
+.categoryCard::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.03) 0%,
+            transparent 50%,
+            rgba(59, 130, 246, 0.02) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.categoryCard:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-6px);
+    box-shadow:
+        0 20px 40px -15px rgba(0, 0, 0, 0.4),
+        0 0 30px -10px var(--accent-color, rgba(59, 130, 246, 0.2));
+}
+
+.categoryCard:hover::after {
+    opacity: 1;
+}
+
+/* Decorative corner accent */
+.cornerAccent {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    border-right: 2px solid var(--accent-color, var(--accent-primary));
+    border-bottom: 2px solid var(--accent-color, var(--accent-primary));
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.categoryCard:hover .cornerAccent {
+    opacity: 0.6;
+}
+
+/* ============================================
+   CARD HEADER
+   ============================================ */
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+    z-index: 1;
+}
+
+.categoryIcon {
+    font-size: 1.75rem;
+    line-height: 1;
+    filter: drop-shadow(0 0 8px var(--accent-color, rgba(59, 130, 246, 0.5)));
+}
+
+.categoryLabel {
+    font-size: 1.25rem;
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+/* ============================================
+   TECH TAGS LIST
+   ============================================ */
+
+.techList {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-sm);
+    position: relative;
+    z-index: 1;
 }
 
 /* ============================================
-   INDIVIDUAL TAGS
+   INDIVIDUAL TECH TAG - CYBER STYLE
    ============================================ */
 
-.tag {
-    display: inline-block;
-    padding: var(--spacing-sm) var(--spacing-md);
+.techTag {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
     font-family: var(--font-mono);
-    font-size: 0.875rem;
-    font-weight: var(--weight-regular);
+    font-size: 0.8125rem;
+    font-weight: 500;
     color: var(--text-secondary);
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    transition: all var(--duration-quick) var(--ease-out);
-    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
 }
 
-/* Hover state - subtle interaction */
-.tag:hover {
+/* Sweep effect on hover */
+.techTag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent);
+    transform: skewX(-20deg);
+    transition: none;
+}
+
+.techTag:hover {
     color: var(--text-primary);
-    background-color: var(--bg-tertiary);
+    background: rgba(59, 130, 246, 0.15);
     border-color: var(--accent-primary);
-    box-shadow: 0 0 0 1px var(--accent-primary);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.25);
+    transform: translateY(-2px);
+}
+
+.techTag:hover::before {
+    left: 150%;
+    transition: left 0.5s ease;
 }
 
 /* ============================================
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE - TABLET+
    ============================================ */
 
-/* Tablet and up */
 @media (min-width: 768px) {
-    .technicalExpertise {
-        padding-top: var(--spacing-5xl);
-        padding-bottom: var(--spacing-5xl);
+    .expertise {
+        padding-top: var(--spacing-3xl);
+        padding-bottom: var(--spacing-3xl);
     }
 
-    .category {
-        margin-top: var(--spacing-3xl);
+    .categoryCard {
+        padding: var(--spacing-3xl);
     }
 
-    .category:first-of-type {
-        margin-top: var(--spacing-4xl);
-    }
-
-    .tagGroup {
+    .techList {
         gap: var(--spacing-md);
     }
 
-    .tag {
-        font-size: 0.9375rem;
-        padding: var(--spacing-sm) var(--spacing-lg);
-    }
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-    .technicalExpertise {
-        padding-top: var(--spacing-6xl);
-        padding-bottom: var(--spacing-6xl);
-    }
-
-    .categoryLabel {
-        font-size: 1rem;
+    .techTag {
+        padding: 10px 16px;
+        font-size: 0.875rem;
     }
 }
 
@@ -142,7 +339,44 @@
    ============================================ */
 
 @media (prefers-reduced-motion: reduce) {
-    .tag:hover {
-        transition: none;
+    .categoryCard:hover {
+        transform: none;
+    }
+
+    .techTag:hover {
+        transform: none;
+    }
+
+    .techTag:hover::before {
+        display: none;
+    }
+}
+
+/* ============================================
+   VIEW CONTAINER - PREVENT POSITION JUMP
+   ============================================ */
+
+.viewContainer {
+    min-height: 600px;
+    position: relative;
+    transition: min-height 0.3s ease;
+}
+
+/* Adjust min-height for different screen sizes */
+@media (min-width: 640px) {
+    .viewContainer {
+        min-height: 550px;
+    }
+}
+
+@media (min-width: 768px) {
+    .viewContainer {
+        min-height: 500px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .viewContainer {
+        min-height: 600px;
     }
 }

@@ -105,32 +105,54 @@
     margin-bottom: var(--spacing-4xl);
 }
 
-/* Primary CTA Button */
+/* Primary CTA Button - NEON MODE */
 .ctaPrimary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: var(--spacing-md) var(--spacing-xl);
-    background-color: var(--accent-primary);
+    background: linear-gradient(135deg, var(--accent-primary), #2563eb);
     color: var(--bg-primary);
-    font-weight: var(--weight-medium);
+    font-weight: var(--weight-bold);
     font-size: 1rem;
     border-radius: var(--radius-md);
     text-decoration: none;
-    transition: all var(--duration-normal) var(--ease-out);
-    border: 2px solid var(--accent-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
 .ctaPrimary:hover {
-    background-color: var(--accent-glow);
-    border-color: var(--accent-glow);
-    transform: scale(1.02);
-    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+    border-color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.02em;
+}
+
+.ctaPrimary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s ease;
+}
+
+.ctaPrimary:hover::after {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.3s ease;
 }
 
 .ctaPrimary:focus-visible {
     outline: 2px solid var(--border-focus);
     outline-offset: 3px;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
 }
 
 /* Secondary CTA Link */
@@ -177,15 +199,18 @@
         position: absolute;
         top: 0;
         right: 0;
-        width: 45%;
+        width: 50%;
         height: 100%;
-        background: radial-gradient(ellipse at 80% 50%,
-                rgba(99, 102, 241, 0.08) 0%,
-                rgba(99, 102, 241, 0.04) 40%,
+        background: radial-gradient(ellipse at 70% 50%,
+                rgba(99, 102, 241, 0.12) 0%,
+                rgba(99, 102, 241, 0.05) 40%,
                 transparent 70%);
         pointer-events: none;
         z-index: 0;
+        filter: blur(40px);
     }
+
+    /* Ambient Depth Layer moved to background-image for better stacking */
 
     .hero>* {
         position: relative;
@@ -204,12 +229,37 @@
 
 /* Desktop */
 @media (min-width: 1024px) {
+    /* Cyber-Industrial Grid Overlay - Using a separate span or sticking to ::before but ensuring order.
+       Actually, common practice: use ::before for grid, ::after for glow. 
+       In tablet query I added .hero::before for ambient glow. 
+       In desktop query .hero::before is grid. 
+       This OVERRIDES the ambient glow on desktop. 
+       Better approach: Add the ambient glow to the main .hero rule or separate pseudo. 
+       Since I can't add DOM, I must manage pseudos carefully.
+       
+       Strategy:
+       .hero base: no pseudos
+       Tablet: 
+         ::after -> Right Anchor
+       Desktop: 
+         ::before -> Grid
+         ::after -> Right Anchor (inherited/refined)
+         
+       I missing a slot for "Ambient Depth". 
+       I will add the Ambient Depth to the .hero background property itself using multiple backgrounds.
+    */
+
     .hero {
         padding-top: calc(var(--spacing-6xl) + var(--spacing-2xl));
         padding-bottom: calc(var(--spacing-6xl) + var(--spacing-2xl));
+
+        /* MULTI-LAYER BACKGROUND DEPTH */
+        background-image:
+            radial-gradient(circle at 10% 90%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
+            radial-gradient(circle at 90% 10%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
     }
 
-    /* Signature grid motif - subtle overlay */
+    /* Cyber-Industrial Grid Overlay */
     .hero::before {
         content: '';
         position: absolute;
@@ -218,22 +268,30 @@
         width: 100%;
         height: 100%;
         background-image:
-            repeating-linear-gradient(0deg,
-                transparent,
-                transparent 48px,
-                rgba(255, 255, 255, 0.025) 48px,
-                rgba(255, 255, 255, 0.025) 50px),
-            repeating-linear-gradient(90deg,
-                transparent,
-                transparent 48px,
-                rgba(255, 255, 255, 0.025) 48px,
-                rgba(255, 255, 255, 0.025) 50px);
+            linear-gradient(rgba(18, 16, 16, 0.1) 50%, rgba(0, 0, 0, 0.1) 50%),
+            linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+        background-size: 100% 2px, 3px 100%;
         pointer-events: none;
         z-index: 0;
+        opacity: 0.12;
+        mix-blend-mode: overlay;
     }
 
+    /* Holographic Name Support */
     .name {
-        font-size: clamp(3rem, 6vw, 4rem);
+        font-size: clamp(3rem, 6vw, 4.5rem);
+        background: linear-gradient(270deg,
+                #e4e4e7 0%,
+                #3b82f6 25%,
+                #60a5fa 50%,
+                #3b82f6 75%,
+                #e4e4e7 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: holoShimmer 6s linear infinite;
+        text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
     }
 }
 

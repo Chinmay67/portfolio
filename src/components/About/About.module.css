@@ -1,87 +1,174 @@
 /**
  * About Section Styles
- * Clean, readable layout
+ * Premium bento-style card layout
+ * Glassmorphism with cyber-industrial accents
  * Uses design tokens from variables.css
  */
 
 .about {
-    padding-top: var(--spacing-4xl);
-    padding-bottom: var(--spacing-4xl);
+    padding-top: var(--spacing-2xl);
+    padding-bottom: var(--spacing-2xl);
 }
 
 /* ============================================
-   SECTION HEADING
+   SECTION HEADER
    ============================================ */
 
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-4xl);
+}
+
 .heading {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: var(--weight-semibold);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: var(--weight-bold);
     line-height: var(--line-height-heading);
     letter-spacing: var(--letter-spacing-tight);
     color: var(--text-primary);
-    margin-bottom: var(--spacing-sm);
-    position: relative;
+    margin-bottom: var(--spacing-md);
 }
 
-/* Subtle underline accent */
-.heading::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background-color: var(--accent-primary);
-    margin-top: var(--spacing-md);
-    border-radius: var(--radius-sm);
+.subheading {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
 }
 
 /* ============================================
-   CONTENT
+   BENTO GRID LAYOUT
    ============================================ */
 
-.content {
-    margin-top: var(--spacing-3xl);
-    max-width: 700px;
+.bentoGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
 }
 
-.paragraph {
-    font-size: clamp(1rem, 2vw, 1.125rem);
+@media (min-width: 640px) {
+    .bentoGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xl);
+    }
+}
+
+@media (min-width: 1024px) {
+    .bentoGrid {
+        gap: var(--spacing-2xl);
+    }
+}
+
+/* ============================================
+   BENTO CARD - GLASSMORPHISM
+   ============================================ */
+
+.bentoCard {
+    position: relative;
+    background: rgba(20, 20, 25, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+}
+
+/* Inner glow on hover */
+.bentoCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+            rgba(59, 130, 246, 0.03) 0%,
+            transparent 50%,
+            rgba(139, 92, 246, 0.02) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.bentoCard:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
+}
+
+.bentoCard:hover::before {
+    opacity: 1;
+}
+
+/* Bottom accent line */
+.cardAccent {
+    position: absolute;
+    bottom: 0;
+    left: 24px;
+    right: 24px;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--accent-primary) 0%,
+            rgba(139, 92, 246, 0.5) 50%,
+            transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.bentoCard:hover .cardAccent {
+    opacity: 1;
+}
+
+/* ============================================
+   CARD CONTENT
+   ============================================ */
+
+.cardIcon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.4));
+}
+
+.cardTitle {
+    font-size: 1.125rem;
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.cardContent {
+    font-size: 0.9375rem;
     line-height: var(--line-height-relaxed);
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-lg);
-}
-
-.paragraph:last-child {
-    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
 }
 
 /* ============================================
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE - TABLET+
    ============================================ */
 
-/* Tablet and up */
 @media (min-width: 768px) {
     .about {
-        padding-top: var(--spacing-5xl);
-        padding-bottom: var(--spacing-5xl);
+        padding-top: var(--spacing-3xl);
+        padding-bottom: var(--spacing-3xl);
     }
 
-    .content {
-        margin-top: var(--spacing-4xl);
+    .bentoCard {
+        padding: var(--spacing-3xl);
     }
 
-    .paragraph {
-        margin-bottom: var(--spacing-xl);
+    .cardContent {
+        font-size: 1rem;
     }
 }
 
-/* Desktop */
-@media (min-width: 1024px) {
-    .about {
-        padding-top: var(--spacing-6xl);
-        padding-bottom: var(--spacing-6xl);
-    }
+/* ============================================
+   ACCESSIBILITY: Reduced Motion
+   ============================================ */
 
-    .content {
-        max-width: 750px;
+@media (prefers-reduced-motion: reduce) {
+    .bentoCard:hover {
+        transform: none;
     }
 }

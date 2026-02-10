@@ -1,8 +1,12 @@
 /**
  * Home Page Component
  * Section order follows rules.txt Phase 3 specification
+ * Enhanced with skill-based project filtering
  */
 
+'use client';
+
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Hero from '@/components/Hero';
 import TechnicalExpertise from '@/components/TechnicalExpertise';
@@ -11,6 +15,8 @@ import Experience from '@/components/Experience';
 import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import FilterPanel from '@/components/FilterPanel';
+import Navigation from '@/components/Navigation';
 
 // Lazy load GitHub component (below the fold)
 const GitHub = dynamic(() => import('@/components/GitHub'), {
@@ -28,8 +34,12 @@ const GitHub = dynamic(() => import('@/components/GitHub'), {
 });
 
 export default function HomePage() {
+  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
   return (
     <main>
+      {/* Navigation */}
+      {/* <Navigation /> */}
+
       {/* ============================================
           HERO SECTION
           Purpose: Establish identity and credibility within 3 seconds
@@ -43,30 +53,36 @@ export default function HomePage() {
       {/* ============================================
           TECHNICAL EXPERTISE SECTION
           Purpose: Demonstrate breadth and depth of technical skills
+          Enhanced with interactive skill constellation
           ============================================ */}
       <section id="skills" aria-labelledby="skills-heading">
         <div className="container">
-          <TechnicalExpertise />
-        </div>
-      </section>
-
-      {/* ============================================
-          FEATURED PROJECTS SECTION
-          Purpose: Prove competence through real-world application
-          ============================================ */}
-      <section id="projects" aria-labelledby="projects-heading">
-        <div className="container">
-          <Projects />
+          <TechnicalExpertise 
+            selectedSkill={selectedSkill}
+            onSkillSelect={setSelectedSkill}
+          />
         </div>
       </section>
 
       {/* ============================================
           PROFESSIONAL EXPERIENCE SECTION
           Purpose: Establish credibility through work history
+          Shows all experiences (filtering handled in FilterPanel)
           ============================================ */}
       <section id="experience" aria-labelledby="experience-heading">
         <div className="container">
           <Experience />
+        </div>
+      </section>
+
+      {/* ============================================
+          FEATURED PROJECTS SECTION
+          Purpose: Prove competence through real-world application
+          Shows all projects (filtering handled in FilterPanel)
+          ============================================ */}
+      <section id="projects" aria-labelledby="projects-heading">
+        <div className="container">
+          <Projects />
         </div>
       </section>
 
@@ -120,6 +136,15 @@ export default function HomePage() {
           <Footer />
         </div>
       </footer>
+
+      {/* ============================================
+          FILTER PANEL
+          Purpose: Interactive slide-in panel for filtered results
+          ============================================ */}
+      <FilterPanel 
+        selectedSkill={selectedSkill}
+        onClearFilter={() => setSelectedSkill(null)}
+      />
     </main>
   );
 }

@@ -1,0 +1,413 @@
+/**
+ * Premium Enhanced Grid Styles
+ * Eye-catching 3D effects, animated gradients, and particle systems
+ */
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    position: relative;
+}
+
+@media (min-width: 640px) {
+    .gridContainer {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-3xl);
+    }
+}
+
+/* ============================================
+   CATEGORY CARD with 3D Transform
+   ============================================ */
+
+.categoryCard {
+    position: relative;
+    background: linear-gradient(135deg, rgba(20, 20, 25, 0.9) 0%, rgba(25, 25, 35, 0.85) 100%);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    cursor: default;
+}
+
+.categoryCard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.03) 0%,
+            transparent 50%,
+            var(--accent-color) 100%);
+    opacity: 0.05;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.categoryCard:hover::before {
+    opacity: 0.15;
+}
+
+/* ============================================
+   ANIMATED GRADIENT BORDER
+   ============================================ */
+
+.gradientBorder {
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg,
+            var(--accent-color),
+            transparent,
+            var(--accent-color),
+            transparent,
+            var(--accent-color));
+    background-size: 300% 300%;
+    border-radius: var(--radius-xl);
+    animation: gradientRotate 8s ease infinite;
+    opacity: 0.3;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.categoryCard:hover .gradientBorder {
+    opacity: 0.7;
+    animation-duration: 4s;
+}
+
+@keyframes gradientRotate {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ============================================
+   PARTICLE EFFECTS
+   ============================================ */
+
+.particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Electric particles (Backend) */
+.electric .particle {
+    background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+    box-shadow: 0 0 8px #3b82f6;
+}
+
+/* Floating particles (Cloud) */
+.float .particle {
+    background: radial-gradient(circle, #10b981 0%, transparent 70%);
+    box-shadow: 0 0 6px #10b981;
+    width: 4px;
+    height: 4px;
+}
+
+/* Shimmer particles (Frontend) */
+.shimmer .particle {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    box-shadow: 0 0 10px #8b5cf6;
+}
+
+/* Pulse particles (Tools) */
+.pulse .particle {
+    background: radial-gradient(circle, #f59e0b 0%, transparent 70%);
+    box-shadow: 0 0 12px #f59e0b;
+    animation: particlePulse 2s ease-in-out infinite;
+}
+
+@keyframes particlePulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+}
+
+/* Matrix particles (AI) */
+.matrix .particle {
+    background: #ec4899;
+    box-shadow: 0 0 8px #ec4899;
+    width: 2px;
+    height: 8px;
+    border-radius: 2px;
+}
+
+/* ============================================
+   CARD CONTENT
+   ============================================ */
+
+.cardContent {
+    position: relative;
+    z-index: 2;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.categoryIcon {
+    font-size: 1.75rem;
+    line-height: 1;
+    filter: drop-shadow(0 0 12px var(--accent-color));
+    display: inline-block;
+}
+
+.categoryLabel {
+    font-size: 1.25rem;
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+/* ============================================
+   TECH TAGS with Proficiency
+   ============================================ */
+
+.techList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.techTagWrapper {
+    position: relative;
+}
+
+.techTag {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.techTag::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            transparent 0%,
+            var(--accent-color) 50%,
+            transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.techTag:hover::before {
+    opacity: 0.1;
+}
+
+.techTag:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px var(--accent-color, rgba(59, 130, 246, 0.3));
+    transform: translateY(-2px);
+}
+
+.techTag.selected {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 25px var(--accent-color);
+}
+
+.techTag.selected .techName {
+    color: var(--text-primary);
+    font-weight: var(--weight-semibold);
+}
+
+.techName {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.techTag:hover .techName {
+    color: var(--text-primary);
+}
+
+/* ============================================
+   PROFICIENCY INDICATORS
+   ============================================ */
+
+.proficiency {
+    display: flex;
+    gap: 3px;
+    position: relative;
+    z-index: 1;
+}
+
+.proficiencyDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+}
+
+.proficiencyDot.active {
+    background: var(--accent-color);
+    box-shadow: 0 0 6px var(--accent-color);
+}
+
+.techTag:hover .proficiencyDot.active {
+    box-shadow: 0 0 10px var(--accent-color);
+    transform: scale(1.2);
+}
+
+/* ============================================
+   TECH INFO TOOLTIP
+   ============================================ */
+
+.techInfo {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    background: rgba(10, 10, 20, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.6875rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10;
+}
+
+.techTag:hover .techInfo {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-4px);
+}
+
+/* ============================================
+   CORNER ACCENT
+   ============================================ */
+
+.cornerAccent {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border-right: 3px solid var(--accent-color);
+    border-bottom: 3px solid var(--accent-color);
+    opacity: 0.3;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+/* ============================================
+   SHINE EFFECT
+   ============================================ */
+
+.shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (min-width: 768px) {
+    .categoryCard {
+        padding: var(--spacing-3xl);
+    }
+
+    .techTag {
+        padding: 12px 16px;
+        font-size: 0.875rem;
+    }
+
+    .categoryIcon {
+        font-size: 2rem;
+    }
+
+    .categoryLabel {
+        font-size: 1.375rem;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY: Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .categoryCard {
+        transition: none;
+    }
+
+    .gradientBorder {
+        animation: none;
+    }
+
+    .particle {
+        animation: none;
+        opacity: 0;
+    }
+
+    .techTag:hover {
+        transform: none;
+    }
+
+    .shine {
+        display: none;
+    }
+}

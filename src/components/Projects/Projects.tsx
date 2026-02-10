@@ -2,14 +2,21 @@
  * Featured Projects Section Component
  * Purpose: Prove competence through real-world application
  * Content from rules.txt Phase 7
+ * Enhanced with skill-based filtering
  */
 
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Projects.module.css';
 
-export default function Projects() {
+interface ProjectsProps {
+  selectedSkill?: string | null;
+  onClearFilter?: () => void;
+  showNoResults?: boolean; // Whether to show "no results" message
+}
+
+export default function Projects({ selectedSkill = null, onClearFilter, showNoResults = true }: ProjectsProps) {
   const projects = [
     {
       name: 'StreamZone — Video Sharing Platform',
@@ -27,7 +34,7 @@ export default function Projects() {
         'Reliable handling of large media uploads',
         'Clean, modular backend architecture'
       ],
-      techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'Cloudinary', 'JWT'],
+      techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'Cloudinary', 'Multer', 'Firebase', 'JWT', 'REST APIs', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Git', 'GitHub', 'VS Code', 'Postman'],
       links: [
         { label: 'View Code →', url: 'https://github.com/Chinmay67/streamzone', primary: true }
       ]
@@ -46,7 +53,7 @@ export default function Projects() {
         'Simplified admission decision-making',
         'Backend designed for future dataset expansion'
       ],
-      techStack: ['Node.js', 'Express', 'MongoDB', 'React'],
+      techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'REST APIs', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Git', 'GitHub', 'VS Code', 'Postman'],
       links: [
         { label: 'View Code →', url: 'https://github.com/Chinmay67/unifind', primary: true },
         { label: 'Live Demo →', url: 'https://unifind.vercel.app', primary: false }
@@ -54,23 +61,81 @@ export default function Projects() {
     }
   ];
 
+  // Filter projects based on selected skill
+  const filteredProjects = selectedSkill
+    ? projects.filter(project => 
+        project.techStack.some(tech => 
+          tech.toLowerCase().includes(selectedSkill.toLowerCase()) ||
+          selectedSkill.toLowerCase().includes(tech.toLowerCase())
+        )
+      )
+    : projects;
+
+
+
   return (
     <div className={styles.projects}>
       {/* Section Heading */}
-      <motion.h2 
-        id="projects-heading" 
-        className={styles.heading}
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.4, ease: 'easeOut' }}
-      >
-        Featured Projects
-      </motion.h2>
+      <motion.div className={styles.headerWrapper}>
+        <motion.h2 
+          id="projects-heading" 
+          className={styles.heading}
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+        >
+          Featured Projects
+          {selectedSkill && (
+            <span className={styles.filterBadge}>
+              Filtered by {selectedSkill}
+            </span>
+          )}
+        </motion.h2>
+
+        {/* Clear Filter Button */}
+        {selectedSkill && onClearFilter && (
+          <motion.button
+            className={styles.clearFilter}
+            onClick={onClearFilter}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className={styles.clearIcon}>✕</span>
+            Clear Filter
+          </motion.button>
+        )}
+      </motion.div>
+
+      {/* No results message - only show if showNoResults is true */}
+      {selectedSkill && filteredProjects.length === 0 && showNoResults && (
+        <motion.div
+          className={styles.noResults}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+        >
+          <p>No projects found using <strong>{selectedSkill}</strong></p>
+          <button onClick={onClearFilter} className={styles.clearLink}>
+            View all projects
+          </button>
+        </motion.div>
+      )}
 
       {/* Project Cards Container */}
-      <div className={styles.projectGrid}>
-        {projects.map((project, index) => (
+      <AnimatePresence mode="wait">
+        <motion.div 
+          key={selectedSkill || 'all'}
+          className={styles.projectGrid}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {filteredProjects.map((project, index) => (
           <motion.article 
             key={project.name} 
             className={styles.projectCard}
@@ -118,7 +183,17 @@ export default function Projects() {
 
             <div className={styles.techStack}>
               {project.techStack.map((tech) => (
-                <span key={tech} className={styles.techTag}>{tech}</span>
+                <span 
+                  key={tech} 
+                  className={`${styles.techTag} ${
+                    selectedSkill && (
+                      tech.toLowerCase().includes(selectedSkill.toLowerCase()) ||
+                      selectedSkill.toLowerCase().includes(tech.toLowerCase())
+                    ) ? styles.techTagHighlighted : ''
+                  }`}
+                >
+                  {tech}
+                </span>
               ))}
             </div>
 
@@ -138,7 +213,8 @@ export default function Projects() {
             </footer>
           </motion.article>
         ))}
-      </div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
