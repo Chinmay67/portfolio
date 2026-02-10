@@ -5,7 +5,7 @@
 
 'use client';
 
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useState, useRef, MouseEvent } from 'react';
 import styles from './SkillGridEnhanced.module.css';
 

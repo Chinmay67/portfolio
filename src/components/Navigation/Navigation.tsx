@@ -6,7 +6,7 @@
 
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { HiHome, HiCode, HiBriefcase, HiLightningBolt, HiUser, HiBeaker, HiMail, HiMenu } from 'react-icons/hi';
 import styles from './Navigation.module.css';
 

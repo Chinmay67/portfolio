@@ -97,7 +97,7 @@ export default function Contact() {
           transition={{ duration: 0.3, ease: 'easeOut', delay: 0.4 }}
         >
           <a
-            href="/resume.pdf"
+            href="/chinmay_resume.pdf"
             className={styles.resumeButton}
             target="_blank"
             rel="noopener noreferrer"
@@ -106,9 +106,9 @@ export default function Contact() {
               // Prefetch resume on hover
               const link = document.createElement('link');
               link.rel = 'prefetch';
-              link.href = '/resume.pdf';
+              link.href = '/chinmay_resume.pdf';
               link.as = 'document';
-              if (!document.querySelector(`link[href="/resume.pdf"]`)) {
+              if (!document.querySelector(`link[href="/chinmay_resume.pdf"]`)) {
                 document.head.appendChild(link);
               }
             }}

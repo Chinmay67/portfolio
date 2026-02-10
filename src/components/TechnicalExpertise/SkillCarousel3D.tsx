@@ -5,8 +5,8 @@
 
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import styles from './SkillCarousel3D.module.css';
 
 interface Technology {
@@ -33,7 +33,7 @@ export default function SkillCarousel3D({ onSkillClick, selectedSkill }: SkillCa
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoRotating, setIsAutoRotating] = useState(true);
   const [flippedCard, setFlippedCard] = useState<number | null>(null);
-  const [direction, setDirection] = useState(0);
+
 
   const categories: SkillCategory[] = [
     {
@@ -113,7 +113,6 @@ export default function SkillCarousel3D({ onSkillClick, selectedSkill }: SkillCa
     if (!isAutoRotating) return;
 
     const interval = setInterval(() => {
-      setDirection(1);
       setCurrentIndex((prev) => (prev + 1) % categories.length);
       setFlippedCard(null);
     }, 4000);
@@ -133,24 +132,22 @@ export default function SkillCarousel3D({ onSkillClick, selectedSkill }: SkillCa
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleNext = () => {
-    setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % categories.length);
     setFlippedCard(null);
     setIsAutoRotating(false);
   };
 
   const handlePrev = () => {
-    setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + categories.length) % categories.length);
     setFlippedCard(null);
     setIsAutoRotating(false);
   };
 
   const handleDotClick = (index: number) => {
-    setDirection(index > currentIndex ? 1 : -1);
     setCurrentIndex(index);
     setFlippedCard(null);
     setIsAutoRotating(false);

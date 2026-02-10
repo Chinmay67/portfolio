@@ -16,7 +16,6 @@ import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import FilterPanel from '@/components/FilterPanel';
-import Navigation from '@/components/Navigation';
 
 // Lazy load GitHub component (below the fold)
 const GitHub = dynamic(() => import('@/components/GitHub'), {
